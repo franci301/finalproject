@@ -1,63 +1,7 @@
-/* #homeNavLogo {
-    width: 10%;
-} */
-
-
-/* @media screen and (max-width: 768px) {
-    #homeNavLogo {
-        width: 35%;
-    }
-} */
-
-@media screen and (max-width: 1000px) {
-    #homeNavLogo {
-        object-fit: cover;
-        width: 16%;
-        min-width: 135px;
-        float: left;
-    }
+#login-text {
+    padding-left: 25%;
 }
 
-@media screen and (min-width: 1000px) {
-    #homeNavLogo {
-        width: 20%;
-    }
+.parentLogin * {
+    margin: 5px;
 }
-
-.mx-right {
-    padding-right: 1%;
-}
-
-
-/* #left-nav {
-    width: 10%;
-} */
-
-
-/* nav {
-    height: 100%;
-    background-color: var(--yellow);
-}
-
-
-
-#center-nav {
-    padding-left: 15%;
-}
-
-#left-nav {
-    padding-left: 20%;
-}
-
-li {
-    white-space: nowrap;
-    font-size: large;
-}
-
-a {
-    color: var(--brown);
-}
-
-#right-nav-div {
-    padding-right: 1%;
-} */

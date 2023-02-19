@@ -1,0 +1,6 @@
+- [ ] make searchbar show for search history
+- [ ] change what is displayed in nav when not logged in
+- [ ] setup firebase and other database
+- [ ] setup login and register pages
+- [ ] add google auth as well for signin
+- [ ] firebase email verification
