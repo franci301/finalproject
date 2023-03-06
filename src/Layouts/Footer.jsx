@@ -2,7 +2,7 @@ import '../Assets/Styles/footer.css';
 function Footer() {
     return (
         <footer className="navbar py-3 fixed-bottom">
-            <div className="container-fluid">
+            <div className="container-fluid" id='footer-container'>
                 <div className="d-inline-flex">
                     <div className="row">
                         <div className="col">

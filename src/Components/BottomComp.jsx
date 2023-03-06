@@ -1,17 +1,15 @@
 import Card from '../Components/Card'
 function BottomComp() {
     
-    let popularItems = new Array();
-    popularItems.push({name:'aa'});
-
-    console.log(popularItems.length);
+    let popularItems = [{name:'aa',rating:'5 stars', distance:'2km'},{name:'bb',rating:'4 stars',distance:'5km'}]
+    
     return (
         <div className='d-flex flex-row'>
             <>
 
                 {popularItems.length !== 0 ?
                     popularItems.map((content, index) => (
-                        <Card state={content} key={index}/>
+                        <Card name={content.name} rating={content.rating} distance={content.distance} key={index}/>
                     ))
                     :
                     <>nope</>

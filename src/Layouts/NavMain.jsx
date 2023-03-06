@@ -7,11 +7,11 @@ import '../Assets/Styles/nav.css'
 
 
 function NavMain() {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(true);
 
   useEffect(() => {
-    let loginToken = Boolean(Cookies.get('login-token'));
-    setLogin(loginToken);
+    // let loginToken = Boolean(Cookies.get('login-token'));
+    // setLogin(loginToken);
   }, [])
 
   function handleLogout() {
