@@ -2,22 +2,35 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 // import profile from '../Assets/Images/profile.png';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 import '../Assets/Styles/nav.css'
 //  if button is clicked, then the profile picture will be replaced with a dropdown menu
 
 
 function NavMain() {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // let loginToken = Boolean(Cookies.get('login-token'));
-    // setLogin(loginToken);
+    let loginToken = Boolean(Cookies.get('login-token'));
+    setLogin(loginToken);
   }, [])
 
-  function handleLogout() {
-    Cookies.remove('login-token');
-    window.location.reload();
+  async function handleLogout() {
+    const auth = getAuth();
+    await signOut(auth).then(() => {
+        Cookies.remove('login-token');
+        navigate('/login');
+        window.location.reload();
+    }).catch((error) => {
+        setError(error.message);
+    });
   }
+
+  
+
   
   return (
     <Navbar bg="light" expand="lg">
@@ -40,7 +53,7 @@ function NavMain() {
               {login === true ?
                 <div className='parentLogin'>
                   <li onClick={handleLogout}>Logout</li>
-                  <Nav.Link href="#">Profile</Nav.Link>
+                  <Nav.Link href="/profile">Profile</Nav.Link>
                 </div>
                 :
                 <></>
