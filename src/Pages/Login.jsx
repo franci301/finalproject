@@ -2,8 +2,7 @@ import '../Assets/Styles/LoginRegister.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase-config';
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider,signInWithPopup,signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';
 
@@ -18,6 +17,7 @@ function Login() {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
         provider.setCustomParameters({ prompt: 'select_account' });
+
         signInWithPopup(auth, provider)
             .then((result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -26,18 +26,19 @@ function Login() {
                 Cookies.set('login-token', user.uid, { expires: 1 });
                 navigate('/*');
             }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                setError(errorMessage);
-            })
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            setError(errorMessage);
+        })
+
+
     }
 
     async function handleLogin() {
         if (email !== '' && password !== '') {
             await signInWithEmailAndPassword(auth, email, password).then((user) => {
                 Cookies.set('login-token', user.user.uid, { expires: 1 });
-
                 navigate('/*');
             }).catch((error) => {
                 switch (error.code) {
@@ -89,6 +90,7 @@ function Login() {
         <>
             <NavMain />
             <div>
+                Make register with google - change login to mobile version
                 <div className='d-flex flex-col justify-content-center py-4'>
                     <div id='login-container'>
                         <div id='input1'>

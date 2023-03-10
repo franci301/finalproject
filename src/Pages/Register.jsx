@@ -19,8 +19,8 @@ function Register() {
         if(name === ''){
             setError('Please enter a Name');
         }else{
-            if (email === email2 && email != '') {
-                if (password === password2 && password != '') {
+            if (email === email2 && email !== '') {
+                if (password === password2 && password !== '') {
                     const user = await createUserWithEmailAndPassword(auth,email,password);
                     const userCollectionRef = doc(db,'users',user.user.uid);
                     await setDoc(userCollectionRef,{

@@ -1,3 +1,7 @@
+#footer-container-main{
+    border: 2px black solid;
+}
+
 #footer-container {
     justify-content: center;
 }
