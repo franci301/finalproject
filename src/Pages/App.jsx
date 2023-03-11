@@ -9,9 +9,10 @@ import {
 import HomePage from './HomePage';
 import Register from './Register';
 import Login from './Login';
-import NavMain from '../Layouts/NavMain';
 import Footer from '../Layouts/Footer';
 import Profile from '../Pages/Profile';
+import EditProfile from "./EditProfile";
+
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/editProfile' element={<EditProfile/>}/>
         </Routes>
       </Router>
       <Footer />

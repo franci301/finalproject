@@ -1,4 +1,10 @@
+#profile-top{
+    height:87vh;
+}
 #profile-top img {
     width: 50%;
-    margin-left: 30%;
+    /*margin-left: 30%;*/
+}
+.edit-container{
+    height:87vh;
 }
