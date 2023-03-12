@@ -50,6 +50,7 @@ function NavMain() {
             <Nav>
               {/* <NavDropdown.Divider /> */}
 
+              <Nav.Link href='/'>Home</Nav.Link>
               {login === true ?
                 <div className='parentLogin'>
                   <li onClick={handleLogout}>Logout</li>

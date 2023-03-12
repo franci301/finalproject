@@ -9,7 +9,6 @@ import {
 import HomePage from './HomePage';
 import Register from './Register';
 import Login from './Login';
-import Footer from '../Layouts/Footer';
 import Profile from '../Pages/Profile';
 import EditProfile from "./EditProfile";
 
@@ -28,7 +27,6 @@ function App() {
           <Route path='/editProfile' element={<EditProfile/>}/>
         </Routes>
       </Router>
-      <Footer />
     </>
   );
 }

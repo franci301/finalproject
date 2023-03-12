@@ -1,5 +1,9 @@
-#footer-container-main{
+#footer-container-main {
     border: 2px black solid;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: white;
 }
 
 #footer-container {

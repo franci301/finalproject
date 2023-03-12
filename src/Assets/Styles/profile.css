@@ -1,10 +1,24 @@
-#profile-top{
-    height:87vh;
+#profile-top {
+    height: 87vh;
 }
+
 #profile-top img {
     width: 50%;
     /*margin-left: 30%;*/
 }
-.edit-container{
-    height:87vh;
+
+#edit-container {
+    height: 100vh;
+}
+
+
+/* Edit Page */
+
+#edit-input-container input {
+    width: 100%
+}
+
+#reset-h1 {
+    padding-top: 5%;
+    text-decoration-line: underline;
 }

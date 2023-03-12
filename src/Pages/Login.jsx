@@ -2,9 +2,10 @@ import '../Assets/Styles/LoginRegister.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase-config';
-import { getAuth, GoogleAuthProvider,signInWithPopup,signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';
+import Footer from '../Layouts/Footer';
 
 
 function Login() {
@@ -26,13 +27,11 @@ function Login() {
                 Cookies.set('login-token', user.uid, { expires: 1 });
                 navigate('/*');
             }).catch((error) => {
-            // const errorCode = error.code;
-            const errorMessage = error.message;
-            // const credential = GoogleAuthProvider.credentialFromError(error);
-            setError(errorMessage);
-        })
-
-
+                // const errorCode = error.code;
+                const errorMessage = error.message;
+                // const credential = GoogleAuthProvider.credentialFromError(error);
+                setError(errorMessage);
+            })
     }
 
     async function handleLogin() {
@@ -88,16 +87,17 @@ function Login() {
 
     return (
         <>
-            <NavMain />
+            {/* <div className='d-flex flex-column' id='login-height'> */}
             <div>
-                Make register with google - change login to mobile version
-                <div className='d-flex flex-col justify-content-center py-4'>
+                <NavMain />
+
+                <div className='d-flex flex-col justify-content-center py-4' id='login-height'>
                     <div id='login-container'>
                         <div id='input1'>
-                            <input type="text" placeholder="Email" onChange={(event) => {  setEmail(event.target.value) }} />
+                            <input type="text" placeholder="Email" onChange={(event) => { setEmail(event.target.value) }} />
                         </div>
                         <div id='input2'>
-                            <input type="password" placeholder="Password" onChange={(event) => {  setPassword(event.target.value)  }} />
+                            <input type="password" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
                         </div>
                         <div id='button-container'>
                             <button onClick={handleLogin}>Login</button>
@@ -112,11 +112,14 @@ function Login() {
                             {error}
                         </div>
                         <div id='register-container' >
-                            <Link style={{textDecoration:'none', color:'black'}} to='/register'>REGISTER</Link>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} to='/register'>REGISTER</Link>
                         </div>
                     </div>
                 </div>
+                {/* <Footer /> */}
             </div>
+
+            {/* </div> */}
         </>
     )
 

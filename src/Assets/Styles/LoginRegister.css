@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+#login-height {
+    min-height: 72vh;
+}
+
 #login-container #input1 {
     padding-bottom: 5%;
 }
@@ -25,4 +29,17 @@
 #login-container #register-container {
     text-align: right;
     padding-top: 5%;
+}
+
+.container {
+    display: table;
+}
+
+.content {
+    display: table-row;
+    height: 100%;
+}
+
+.content-body {
+    display: table-cell;
 }
