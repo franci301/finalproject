@@ -1,0 +1,27 @@
+#top-comp{
+    padding-bottom:50%;
+}
+
+#middle-comp{
+}
+
+#bottom-comp{
+    padding-top:25%;
+}
+
+
+/*inside of the bottom comp --> popular page css*/
+
+#popular-container img{
+    width:100%;
+}
+
+#single-map-container{
+    width:100%;
+    height:35vh;
+    position:relative;
+}
+
+#popular-description-container img{
+    width:80%;
+}
