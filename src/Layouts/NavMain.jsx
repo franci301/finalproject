@@ -10,7 +10,6 @@ import '../Assets/Styles/nav.css'
 
 function NavMain() {
   const [login, setLogin] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +24,7 @@ function NavMain() {
         navigate('/login');
         window.location.reload();
     }).catch((error) => {
-        setError(error.message);
+        window.alert(error.message);
     });
   }
 
@@ -36,7 +35,7 @@ function NavMain() {
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <div className='d-flex flex-row m-auto align-conetent-center'>
+        <div className='d-flex flex-row m-auto align-content-center'>
           <Navbar.Brand href="/*">Application Name</Navbar.Brand>
           <div className='py-2' id='login-text'>
             {login === true ?
@@ -46,15 +45,16 @@ function NavMain() {
           </div>
         </div>
         <Navbar.Collapse id="basic-navbar-nav">
-          <div className='py-3'>
+          <div className='py-3' id='navOptions-container'>
             <Nav>
               {/* <NavDropdown.Divider /> */}
 
               <Nav.Link href='/'>Home</Nav.Link>
+              <Nav.Link href='/'>Advanced Search</Nav.Link>
               {login === true ?
                 <div className='parentLogin'>
-                  <li onClick={handleLogout}>Logout</li>
                   <Nav.Link href="/profile">Profile</Nav.Link>
+                  <li onClick={handleLogout}>Logout</li>
                 </div>
                 :
                 <></>

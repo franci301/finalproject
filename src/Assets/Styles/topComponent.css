@@ -5,3 +5,9 @@
     padding-left: 1em;
     width: 100%;
 }
+
+.search-bar__history{
+    position:unset !important;
+    padding:unset !important;
+    width:250px !important;
+}

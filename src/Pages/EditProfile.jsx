@@ -76,11 +76,11 @@ export default function EditProfile() {
             <NavMain />
             <div className='d-flex flex-column pt-3 px-3'>
                 <div className='pb-3' id='edit-input-container'>
-                    <h1> Name:</h1>
+                    <h6> Name:</h6>
                     <input type='text' onChange={(e) => setName(e.target.value)} value={name} />
-                    <h1> Email: </h1>
+                    <h6> Email: </h6>
                     <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
-                    <h1 onClick={handleSendPasswordReset} id='reset-h1'>Change Password</h1>
+                    <h6 onClick={handleSendPasswordReset} id='reset-h1'>Change Password</h6>
                 </div>
                 <button onClick={updateInformation}>Update Information</button>
             </div>

@@ -11,7 +11,7 @@ import Register from './Register';
 import Login from './Login';
 import Profile from '../Pages/Profile';
 import EditProfile from "./EditProfile";
-
+import PopularPage from './PopularPage';
 
 function App() {
 
@@ -25,6 +25,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/editProfile' element={<EditProfile/>}/>
+          <Route path='/popularPage' element={<PopularPage/>}/>
         </Routes>
       </Router>
     </>
