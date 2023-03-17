@@ -3,9 +3,10 @@ import {useMemo} from 'react';
 import img from '../Assets/Images/duck.jpg'
 import '../Assets/Styles/MapStyle.css';
 
+
 export default function MapPage(){
     const {isLoaded} = useJsApiLoader({
-        googleMapsApiKey:'AIzaSyBsOv56rFlPcRgTYPUCZCi5Eda4gG8mRf0'
+        googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     })
     if(!isLoaded) return (<div>Loading...</div>);
     return (
@@ -14,7 +15,6 @@ export default function MapPage(){
 }
 
 function Map(){
-
     const center = useMemo(()=>({lat:51.52194, lng:-0.03904 }),[]);
     const center2 = useMemo(()=>({lat:51.52194, lng:-0.04990 }),[]);
     const containerStyle = {

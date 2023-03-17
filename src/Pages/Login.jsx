@@ -5,7 +5,6 @@ import { auth } from '../firebase/firebase-config';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';
-import Footer from '../Layouts/Footer';
 
 
 function Login() {
@@ -87,7 +86,6 @@ function Login() {
 
     return (
         <>
-            {/* <div className='d-flex flex-column' id='login-height'> */}
             <div>
                 <NavMain />
 
@@ -116,10 +114,8 @@ function Login() {
                         </div>
                     </div>
                 </div>
-                {/* <Footer /> */}
             </div>
 
-            {/* </div> */}
         </>
     )
 

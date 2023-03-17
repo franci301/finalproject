@@ -32,7 +32,7 @@ function NavMain() {
 
   
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar id='navbar-container' expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <div className='d-flex flex-row m-auto align-content-center'>

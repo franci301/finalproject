@@ -5,13 +5,12 @@ import '../Assets/Styles/MapStyle.css';
 
 export default function SingleImgMap({latLon,img}){
     const {isLoaded} = useJsApiLoader({
-        googleMapsApiKey:'AIzaSyBsOv56rFlPcRgTYPUCZCi5Eda4gG8mRf0'
+        googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     })
     if(!isLoaded) return (<div>Loading...</div>);
     return (
         <Map latLon={latLon} img={img}/>
     )
-
 }
 
 function Map({latLon, img}){

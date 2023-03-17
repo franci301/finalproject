@@ -1,6 +1,5 @@
-#profile-top {
-    height: 87vh;
-}
+/*Profile Page*/
+
 
 #profile-top img {
     width: 50%;
@@ -12,10 +11,28 @@
 }
 
 
-/* Edit Page */
+/* Edit Profile Page */
 
 #edit-input-container input {
     width: 100%
+}
+#edit-input-container #input-img{
+    width:auto;
+}
+
+#edit-input-container h6{
+    display:inline-block;
+}
+
+#profile-stats-container{
+    padding-top:4%;
+    width:100%;
+    background-color:#b8b5ba;
+}
+
+#profile-stats-container div{
+    margin-left:10%;
+    padding-right:10%;
 }
 
 #reset-h1 {

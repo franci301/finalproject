@@ -1,7 +1,7 @@
 import '../Assets/Styles/LoginRegister.css';
 import { useState } from 'react';
 import { db, auth } from '../firebase/firebase-config.js';
-import { updateDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -26,15 +26,15 @@ function Register() {
         } else {
             if (email === email2 && email !== '') {
                 if (password === password2 && password !== '') {
-                    const user = await createUserWithEmailAndPassword(auth, email, password).then((result) => {
-                        const userCollectionRef = doc(db, 'users', user.user.uid);
+                    await createUserWithEmailAndPassword(auth, email, password).then((result) => {
+                        const userCollectionRef = doc(db, 'users', result.user.uid);
                         setDoc(userCollectionRef, {
                             name: name, email: email
                         });
-                        Cookies.set('login-token', user.uid, { expires: 1 });
+                        Cookies.set('login-token', result.user.uid, { expires: 1 });
                         navigate('/*');
                     }).catch((err) => {
-                        switch (error.message) {
+                        switch (err.code) {
                             case 'auth/email-already-in-use':
                                 setError('Email already in use');
                                 break;
@@ -50,7 +50,7 @@ function Register() {
                             default:
                                 setError('Something went wrong \nPlease try again');
                                 // remove for production
-                                console.log(error.message);
+                                console.log(err.code);
                         }
                     })
                 } else {
@@ -115,9 +115,9 @@ function Register() {
                 <div>
                     <button onClick={register}>Register</button>
                     <button onClick={registerWithGoogle}>Register With Google</button>
-                    <h1 className='text-danger'>
+                    <h6 className='text-danger'>
                         {error}
-                    </h1>
+                    </h6>
                 </div>
             </div>
         </>

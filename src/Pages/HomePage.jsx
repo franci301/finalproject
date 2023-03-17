@@ -5,7 +5,7 @@ import NavMain from '../Layouts/NavMain';
 import '../Assets/Styles/Homepage.css';
 function HomePage() {
 
-    // get 2 most viewed location and save to state
+    // get 2 most viewed location and save to state - server side where every day/week i get the two highest rated photos/locations
 
     return (
         <div className='text-secondary d-flex flex-column justify-content-between' >
@@ -21,7 +21,6 @@ function HomePage() {
                     <BottomComp />
                 </div>
             </div>
-            {/* <Footer/> */}
         </div>
     );
 }

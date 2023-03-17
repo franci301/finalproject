@@ -12,11 +12,12 @@ import Login from './Login';
 import Profile from '../Pages/Profile';
 import EditProfile from "./EditProfile";
 import PopularPage from './PopularPage';
-
+import ScrollToTop from "../Components/ScrollToTop";
+import ViewIndividualImage from "../Components/ViewIndividualImage";
+import UploadImage from '../Components/UploadImage';
 function App() {
 
   return (
-    // temporary solution until I download react router
     <>
       <Router>
         <Routes>
@@ -26,7 +27,10 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/editProfile' element={<EditProfile/>}/>
           <Route path='/popularPage' element={<PopularPage/>}/>
+          <Route path='/viewIndividualImage' element={<ViewIndividualImage/>}/>
+          <Route path='/uploadImage' element={<UploadImage/>}/>
         </Routes>
+        <ScrollToTop/>
       </Router>
     </>
   );

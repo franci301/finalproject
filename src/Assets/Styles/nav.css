@@ -1,3 +1,6 @@
+#navbar-container{
+    background-color:#b8b5ba;
+}
 #login-text {
     padding-left: 25%;
 }
@@ -5,3 +8,4 @@
 #navOptions-container{
     float:left;
 }
+

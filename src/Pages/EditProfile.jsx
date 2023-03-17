@@ -52,7 +52,7 @@ export default function EditProfile() {
         }   
     }
 
-    async function handleSendPasswordReset() {
+    async function handleSendPasswordResetEmail() {
         await sendPasswordResetEmail(auth, email).then((result) => {
             window.alert('Password Reset Email Has Been Sent!')
         }).catch((err) => {
@@ -80,11 +80,12 @@ export default function EditProfile() {
                     <input type='text' onChange={(e) => setName(e.target.value)} value={name} />
                     <h6> Email: </h6>
                     <input type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
-                    <h6 onClick={handleSendPasswordReset} id='reset-h1'>Change Password</h6>
+                    <h6>Update Profile Picture</h6>
+                    <input type="file" id='input-img' name={'img'} accept='image/*' alt='update Profile picture'/>
+                    <h6 onClick={handleSendPasswordResetEmail} id='reset-h1'>Change Password</h6>
                 </div>
                 <button onClick={updateInformation}>Update Information</button>
             </div>
         </div>
-
     )
 }

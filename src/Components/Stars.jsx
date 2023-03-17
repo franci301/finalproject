@@ -1,4 +1,4 @@
-import star from '../Assets/Images/star.jpg';
+import star from '../Assets/Images/star.png';
 
 
 export default function Stars({id}){
