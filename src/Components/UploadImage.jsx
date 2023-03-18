@@ -27,7 +27,7 @@ export default function UploadImage() {
             const inputColor = hex;
             const closestColor = nearest(inputColor);
             // setColourNames(closestColor);
-            console.log(closestColor);
+            // console.log(closestColor);
 
         }
     },[imageColors])
@@ -83,8 +83,8 @@ export default function UploadImage() {
                                     Palette:
                                     <ul>
                                         {data.map((color, index) => (
-                                            <div className={'d-flex flex-row'}>
-                                                <div key={index} style={{ backgroundColor: color }} id='example-pallet'>
+                                            <div className={'d-flex flex-row'} key={index}>
+                                                <div  style={{ backgroundColor: color }} className='example-pallet'>
 
                                                 </div>
                                                 {color}

@@ -6,14 +6,17 @@ GENERAL TODOS:
 - [ ]  viewports for mobile vs desktop
 - [ ]  buttons on login and register pages are too close together
 - [ ]  unit testing - end-to-end testing - smoke testing
-- [ ]  user shouldnt be able to login with google without having an account already registered
-- [ ]  if uploaded image doesnt have geolocation - 2 options should appear, enter postcode or enter lat long
-- [ ]  can use vs code chatgpt to make tests
+- [ ]  user shouldn't be able to log in with Google without having an account already registered
+- [ ]  if uploaded image doesn't have geolocation - 2 options should appear, enter postcode or enter lat long
+- [ ]  can use vs code chatGPT to make tests
 
 
 TODAY'S TODOS:
-- [ ]  display to user the color palette got and ask if they thing it is correct?
+- [ ]  display to user the color palette and the corresponding names got and ask if they think it is correct?
 - [ ]  if not correct, they should be able to enter the name of some colours
+- [ ]  ADD IN A WARNING THAT THIS WILL ONLY WORK IF YOU GO TO CAMERA > FORMATS > MOST COMPATIBLE
+- [ ]  test on android too
+
 
 Library to look into:
 https://www.npmjs.com/package/color-namer
