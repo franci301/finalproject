@@ -14,7 +14,9 @@ import EditProfile from "./EditProfile";
 import PopularPage from './PopularPage';
 import ScrollToTop from "../Components/ScrollToTop";
 import ViewIndividualImage from "../Components/ViewIndividualImage";
-import UploadImage from '../Components/UploadImage';
+import UploadPhotoPage from "./UploadPhotoPage";
+import UploadImage from "../Components/UploadImage";
+
 function App() {
 
   return (
@@ -28,6 +30,7 @@ function App() {
           <Route path='/editProfile' element={<EditProfile/>}/>
           <Route path='/popularPage' element={<PopularPage/>}/>
           <Route path='/viewIndividualImage' element={<ViewIndividualImage/>}/>
+          <Route path='/uploadPhoto' element={<UploadPhotoPage/>}/>
           <Route path='/uploadImage' element={<UploadImage/>}/>
         </Routes>
         <ScrollToTop/>
