@@ -15,7 +15,8 @@ import PopularPage from './PopularPage';
 import ScrollToTop from "../Components/ScrollToTop";
 import ViewIndividualImage from "../Components/ViewIndividualImage";
 import UploadPhotoPage from "./UploadPhotoPage";
-import UploadImage from "../Components/UploadImage";
+import UploadImage from "./imageUploadSequence/UploadImage";
+import ShowMapPage from './imageUploadSequence/showMapPage';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           <Route path='/viewIndividualImage' element={<ViewIndividualImage/>}/>
           <Route path='/uploadPhoto' element={<UploadPhotoPage/>}/>
           <Route path='/uploadImage' element={<UploadImage/>}/>
+          <Route path='/verifyMap' element={<ShowMapPage/>}/>
         </Routes>
         <ScrollToTop/>
       </Router>

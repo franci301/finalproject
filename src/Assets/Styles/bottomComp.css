@@ -1,5 +1,13 @@
+#uploadPhotos-container{
+    padding-top:5%;
+}
+
 .example-pallet{
     height:50px;
     width:50px;
     margin-bottom: 5px;
+}
+
+.colour-information p{
+    margin-right:10%;
 }

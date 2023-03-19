@@ -25,7 +25,7 @@ export default function PopularPage(){
                     <h5>Distance: {distance}</h5>
                 </div>
                 <div id='single-map-container'>
-                    <SingleImgMap latLon={latLon} img={img}/>
+                    <SingleImgMap latLon={latLon} img={img} editable={false}/>
                 </div>
             </div>
         </div>
