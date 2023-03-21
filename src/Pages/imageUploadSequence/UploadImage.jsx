@@ -9,15 +9,13 @@ import colourHex from "../../Assets/image-processing/colourNames";
 import '../../Assets/Styles/bottomComp.css'
 
 import { GetColorName } from 'hex-color-to-color-name';
-import { getColorName } from 'color-name'; // remember to uninstall this package
-
-
 
 export default function UploadImage() {
 
     const navigate = useNavigate();
     const [imageCoords, setImageCoords] = useState({ state: "initial" });
     const [imageURL, setImageURL] = useState(null);
+    const [imageForNest, setImageFornest] = useState(null);
     const [imageObj, setImageObj] = useState(null);
     const [imageColors, setColors] = useState([]);
     const [colourNames, setColourNames] = useState([]);
@@ -35,13 +33,17 @@ export default function UploadImage() {
     },[imageColors,imageURL])
 
     const handleDrop = async (acceptedFiles) => {
-        // need this format for google maps
+        // need this format for Google Maps
         const imageObject = new Image();
         imageObject.src = URL.createObjectURL(acceptedFiles[0]);
         setImageObj(imageObject.src)
-
+        // image url for extracting colour palette
         setImageURL(URL.createObjectURL(acceptedFiles[0]));
         setImageCoords({ state: "loading" });
+
+        // image __ for backend
+        setImageFornest(acceptedFiles[0]);
+
         try {
             const { latitude, longitude } = await getLatLong(acceptedFiles[0]);
             setImageCoords({ state: "resolved", latitude, longitude });
@@ -75,7 +77,7 @@ export default function UploadImage() {
     function routeCheckImageCoords(){
         // set image colours to local storage and add function to be able to go back in the image upload sequence
         colours:getTagsValue()
-        const data = {image:imageObj,latLong:imageCoords,locationAvailable:noLocation};
+        const data = {image:imageObj,latLong:imageCoords,locationAvailable:noLocation,nestImage:imageForNest};
         navigate('/verifyMap',{state:data});
     }
 
@@ -117,7 +119,7 @@ export default function UploadImage() {
                     </Palette>
                 </>
                 }
-                <Dropzone onDrop={handleDrop}  >
+                <Dropzone onDrop={handleDrop} >
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
                             <input {...getInputProps()} />

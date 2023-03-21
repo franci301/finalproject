@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';
-
+import AddUserToDatabase from "../firebase/AddUserToDatabase";
 
 function Register() {
 
@@ -27,10 +27,7 @@ function Register() {
             if (email === email2 && email !== '') {
                 if (password === password2 && password !== '') {
                     await createUserWithEmailAndPassword(auth, email, password).then((result) => {
-                        const userCollectionRef = doc(db, 'users', result.user.uid);
-                        setDoc(userCollectionRef, {
-                            name: name, email: email
-                        });
+                        AddUserToDatabase(name,email,result);
                         Cookies.set('login-token', result.user.uid, { expires: 1 });
                         navigate('/*');
                     }).catch((err) => {
@@ -76,12 +73,8 @@ function Register() {
                 .then((result) => {
                     // const credential = GoogleAuthProvider.credentialFromResult(result);
                     // const token = credential.accessToken;
-                    const user = result.user;
-                    const userCollectionRef = doc(db, 'users', user.uid);
-                    setDoc(userCollectionRef, {
-                        name: name, email: user.email
-                    });
-                    Cookies.set('login-token', user.uid, { expires: 1 });
+                    AddUserToDatabase(name,result.user.email,result);
+                    Cookies.set('login-token', result.user.uid, { expires: 1 });
                     navigate('/*');
                 }).catch((error) => {
                     // const errorCode = error.code;

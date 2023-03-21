@@ -21,7 +21,12 @@ TODAY'S TODOS:
 - [X]  upload page should display a map with the location of the photo which will be verifiable by the user as correct or not
 - [ ]  ADD IN A WARNING THAT THIS WILL ONLY WORK IF YOU GO TO CAMERA > FORM ATS > MOST COMPATIBLE
 - [ ]  test on android too
-- [ ]  colour names not updating
+- [X]  colour names not updating
+- [ ]  remove option to take photo directly within the app
+- [ ]  make map page taller when submitted photo
+- [ ]  add in error checks for empty postcode --> add condition to load map being that postcode is false and set initial postcode to true
+- [ ]  what i can do is add the primary colour to the image name so that i can always find the single image and i dont have to save multiple images.
+- [ ]  then i also have to get the primary colour of an image and use that to save it to the 'database'
 
 IMPROVEMENTS BASED ON TIME
 - [ ]  get the nearest colours based on users search word

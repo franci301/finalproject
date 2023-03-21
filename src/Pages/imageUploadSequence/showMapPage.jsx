@@ -2,6 +2,7 @@ import {useLocation} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import NavMain from "../../Layouts/NavMain";
 import SingleImgMap from "../../Components/SingleImgMap";
+import UploadFileNameToDatabase from "../../firebase/UploadFileNameToDatabase";
 
 export default function ShowMapPage() {
 
@@ -12,6 +13,8 @@ export default function ShowMapPage() {
     const [errorText, setErrorText] = useState('');
     const [postcode, setPostcode] = useState('');
     const [locationBool, setLocationBool] = useState(false);
+    const [editable,setEditabale] = useState(false);
+    const [nestImage,setImageForNest] = useState(null);
 
 
     useEffect(() => {
@@ -22,10 +25,12 @@ export default function ShowMapPage() {
             longitude: location.state.latLong.longitude
         });
         setLocationBool(location.state.locationAvailable);
+        setImageForNest(location.state.nestImage);
     }, [location]);
 
     function showNoText() {
         setErrorText('Drag the image to the correct location or enter the postcode in the box below.\n Be aware that currently, the postcode feature only works for the UK');
+        setEditabale(true);
     }
 
     function handleMarkerDrag(lat, lng) {
@@ -33,15 +38,49 @@ export default function ShowMapPage() {
     }
 
     async function getPostCode() {
-        const url = `https://api.postcodes.io/postcodes/${postcode}`;
-        await fetch(url)
-            .then(response => response.json())
-            .then(data => setLatLong({
-                state: 'resolved',
-                latitude: data.result.latitude,
-                longitude: data.result.longitude
-            }))
-            .catch(error => console.error(error))
+        setErrorText('');
+        console.log(!(postcode.length === 0));
+        if(!(postcode.length === 0)){
+            const url = `https://api.postcodes.io/postcodes/${postcode}`;
+            await fetch(url)
+                .then(response => response.json())
+                .then(data => setLatLong({
+                    state: 'resolved',
+                    latitude: data.result.latitude,
+                    longitude: data.result.longitude
+                }))
+                .catch(error => setErrorText(error));
+        }else{
+            setErrorText('Postcode cannot be empty')
+        }
+    }
+
+    async function uploadImage(){
+
+        const formData = new FormData();
+        formData.append('file',nestImage);
+
+        try{
+            const response = await fetch('http://localhost:3333/images',{
+                method: 'POST',
+                body: formData,
+            });
+            await response.json().then((res)=>{
+                console.log(res);
+                if(res.success === true){
+                    console.log(handleDatabaseUpload(res.payload.fileName));
+                    console.log(res.payload.fileName);
+                }else{
+                    setErrorText('Something went wrong, please try again. \n If the issue persists, contact customer support.');
+                }
+            })
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async function handleDatabaseUpload(fileName){
+        return await UploadFileNameToDatabase(fileName);
     }
 
     return (
@@ -51,11 +90,11 @@ export default function ShowMapPage() {
                 {imageCoords.state === "resolved" && (
                     <div id='single-map-container'>
                         <SingleImgMap latLon={[imageCoords.latitude, imageCoords.longitude]} img={imageObj}
-                                      editable={true} onMarkerDrag={handleMarkerDrag}/>
+                                      editable={editable} onMarkerDrag={handleMarkerDrag}/>
                         <br/>
                         <h5>Is the location shown correct?</h5>
                         <div className={'d-flex flex-row justify-content-evenly'}>
-                            <button>Yes</button>
+                            <button onClick={uploadImage}>Yes</button>
                             <button onClick={showNoText}>No</button>
                         </div>
                         <div className={'d-flex flex-column py-3'}>
@@ -71,7 +110,7 @@ export default function ShowMapPage() {
                             }
 
                         </div>
-                        <button>Submit Photo</button>
+                        <button onClick={uploadImage}>Submit Photo</button>
                         <br/>
                         {locationBool === true && (
                             <>
