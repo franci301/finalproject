@@ -6,7 +6,7 @@ import '../Assets/Styles/MapStyle.css';
 export default function SingleImgMap({latLon,img,editable, onMarkerDrag}) {
     const {isLoaded} = useJsApiLoader({
         googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    })
+    });
 
     const handleDragEnd = (event) => {
         const {latLng} = event;
