@@ -1,7 +1,7 @@
 import '../Assets/Styles/LoginRegister.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase/firebase-config';
+import { auth } from '../firebase/_firebase-config';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';

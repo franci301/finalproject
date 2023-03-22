@@ -1,4 +1,4 @@
-import {auth,db } from './firebase-config';
+import {auth,db } from './_firebase-config';
 import { doc, getDoc } from 'firebase/firestore';
 
 export default async function getUserDetails(){

@@ -1,4 +1,4 @@
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import NavMain from "../../Layouts/NavMain";
 import SingleImgMap from "../../Components/SingleImgMap";
@@ -7,6 +7,7 @@ import UploadFileNameToDatabase from "../../firebase/UploadFileNameToDatabase";
 export default function ShowMapPage() {
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     const [imageObj, setImage] = useState(null);
     const [imageCoords, setLatLong] = useState({state: 'initial'});
@@ -83,6 +84,8 @@ export default function ShowMapPage() {
         const outcome =  await UploadFileNameToDatabase(fileName);
         if(outcome.status === true){
             console.log(outcome.message);
+            navigate('/profile');
+
         }else{
             console.log(outcome.message)
         }

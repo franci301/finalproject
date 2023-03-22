@@ -1,7 +1,7 @@
 import '../Assets/Styles/profile.css';
 import NavMain from '../Layouts/NavMain';
 import { useEffect, useState } from 'react';
-import { auth, db } from '../firebase/firebase-config';
+import { auth, db } from '../firebase/_firebase-config';
 import { doc, getDoc,updateDoc } from 'firebase/firestore';
 import { sendPasswordResetEmail } from 'firebase/auth';
 

@@ -8,7 +8,7 @@ GENERAL TODOS:
 - [ ]  unit testing - end-to-end testing - smoke testing
 - [ ]  user shouldn't be able to log in with Google without having an account already registered
 - [X]  if uploaded image doesn't have geolocation - 1 option should appear, enter postcode
-- [ ]  can use vs code chatGPT to make tests
+- [ ]  can use vs code copilot/ chatgpt to make tests
 - [ ]  add a help section to list the different colours and their corresponding colour pallets which are searchable
 - [ ]  get user location data for Google Maps
 - [ ]  clicking on a map image gives popup/page with relevant colour tags and ratings

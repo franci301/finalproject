@@ -69,7 +69,7 @@ function Profile() {
                               <img src={value} onClick={()=>route(value)} key={index}/>
                             ))
                             :
-                            <>Upload an image to see it here!</>
+                            <></>
                         }
                     </div>
 
