@@ -4,11 +4,13 @@ import NavMain from "../../Layouts/NavMain";
 import getLatLong from "../../Assets/image-processing/getLatLong";
 import  Dropzone  from "react-dropzone";
 import { Palette } from "color-thief-react";
+import Vibrant from 'node-vibrant';
 import nearestColor from 'nearest-color';
 import colourHex from "../../Assets/image-processing/colourNames";
 import '../../Assets/Styles/bottomComp.css'
 
 import { GetColorName } from 'hex-color-to-color-name';
+import getProminantColour from "./getProminantColour";
 
 export default function UploadImage() {
 
@@ -19,6 +21,8 @@ export default function UploadImage() {
     const [imageObj, setImageObj] = useState(null);
     const [imageColors, setColors] = useState([]);
     const [colourNames, setColourNames] = useState([]);
+    const [dominantColourName, setDominantColourName] = useState(null);
+    const [hex, setHex] = useState(null);
     const [editableBoolean, setEditableBoolean] = useState(false);
     const [editableTxt, setEditableTxt] = useState('');
     const [noLocation, setNoLocation] = useState(false);
@@ -33,6 +37,7 @@ export default function UploadImage() {
     },[imageColors,imageURL])
 
     const handleDrop = async (acceptedFiles) => {
+
         // need this format for Google Maps
         const imageObject = new Image();
         imageObject.src = URL.createObjectURL(acceptedFiles[0]);
@@ -40,9 +45,17 @@ export default function UploadImage() {
         // image url for extracting colour palette
         setImageURL(URL.createObjectURL(acceptedFiles[0]));
         setImageCoords({ state: "loading" });
-
         // image __ for backend
         setImageFornest(acceptedFiles[0]);
+        // Dominant colour palette
+        getProminantColour(imageObject.src).then((res)=>{
+            setHex(res);
+            const nearest = nearestColor.from(colourHex);
+            const dominantColourName = nearest(res).name;
+
+            setDominantColourName(dominantColourName)
+
+        })
 
         try {
             const { latitude, longitude } = await getLatLong(acceptedFiles[0]);
@@ -69,19 +82,18 @@ export default function UploadImage() {
         return pValues;
     }
 
-    function routeUploadPhoto(){
-        const data = {latitude:imageCoords.latitude, longitude:imageCoords.longitude, colourNames:colourNames}
-        navigate('/uploadPhoto',{state:data});
-    }
-
     function routeCheckImageCoords(){
         // set image colours to local storage and add function to be able to go back in the image upload sequence
-        colours:getTagsValue()
-        const data = {image:imageObj,latLong:imageCoords,locationAvailable:noLocation,nestImage:imageForNest};
+        const data = {
+            image:imageObj,
+            latLong:imageCoords,
+            locationAvailable:noLocation,
+            nestImage:imageForNest,
+            dominantColor: dominantColourName,
+            colourNames: colourNames,
+        };
         navigate('/verifyMap',{state:data});
     }
-
-
 
     return (
 
@@ -113,6 +125,18 @@ export default function UploadImage() {
                                             </div>
                                         ))}
                                     </ul>
+                                    {dominantColourName === null?
+                                        <>
+                                        </>:
+                                        <div>
+                                            Dominant Colour:
+                                            <br/>
+                                            (Note this may not be the colour that appears the most, but actually the most vibrant colour)
+                                            <div style={{backgroundColor:hex}} className='example-pallet'>
+                                            </div>
+                                        </div>
+
+                                    }
                                 </div>
                             );
                         }}

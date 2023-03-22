@@ -15,7 +15,7 @@ export default function ShowMapPage() {
     const [locationBool, setLocationBool] = useState(false);
     const [editable,setEditabale] = useState(false);
     const [nestImage,setImageForNest] = useState(null);
-
+    const [dominantColour, setDominantColour] = useState('');
 
     useEffect(() => {
         setImage(location.state.image);
@@ -26,6 +26,7 @@ export default function ShowMapPage() {
         });
         setLocationBool(location.state.locationAvailable);
         setImageForNest(location.state.nestImage);
+        setDominantColour(location.state.dominantColor);
     }, [location]);
 
     function showNoText() {
@@ -58,7 +59,8 @@ export default function ShowMapPage() {
     async function uploadImage(){
 
         const formData = new FormData();
-        formData.append('file',nestImage);
+        formData.append('folderName', dominantColour);
+        formData.append('file', nestImage);
 
         try{
             const response = await fetch('http://localhost:3333/images',{
@@ -66,10 +68,8 @@ export default function ShowMapPage() {
                 body: formData,
             });
             await response.json().then((res)=>{
-                console.log(res);
                 if(res.success === true){
-                    console.log(handleDatabaseUpload(res.payload.fileName));
-                    console.log(res.payload.fileName);
+                    handleDatabaseUpload(dominantColour + '/'+ res.payload.fileName);
                 }else{
                     setErrorText('Something went wrong, please try again. \n If the issue persists, contact customer support.');
                 }
@@ -80,7 +80,12 @@ export default function ShowMapPage() {
     }
 
     async function handleDatabaseUpload(fileName){
-        return await UploadFileNameToDatabase(fileName);
+        const outcome =  await UploadFileNameToDatabase(fileName);
+        if(outcome.status === true){
+            console.log(outcome.message);
+        }else{
+            console.log(outcome.message)
+        }
     }
 
     return (
@@ -108,7 +113,6 @@ export default function ShowMapPage() {
                                 :
                                 <></>
                             }
-
                         </div>
                         <button onClick={uploadImage}>Submit Photo</button>
                         <br/>
@@ -118,10 +122,7 @@ export default function ShowMapPage() {
                             </>
                         )}
                     </div>
-
                 )}
-
-
             </div>
         </>
     )

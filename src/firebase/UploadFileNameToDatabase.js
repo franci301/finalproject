@@ -1,7 +1,7 @@
 import {auth, db} from './firebase-config';
 import {doc,collection, updateDoc, arrayUnion} from "firebase/firestore";
 
-export default async function UploadFileNameToDatabase(imageName){
+export default async function UploadFileNameToDatabase(imageName,folderName){
     return new Promise((resolve, reject) =>{
         const userDetails = auth.onAuthStateChanged(function(user){
             if(user){
@@ -13,7 +13,7 @@ export default async function UploadFileNameToDatabase(imageName){
                     userDetails();
                     resolve({
                         status:true,
-                        message:'Image sent to the server',
+                        message:'Image uploaded successfully',
                     })
                 }).catch((error)=>{
                     userDetails();

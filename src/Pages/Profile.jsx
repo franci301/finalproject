@@ -3,18 +3,16 @@ import temp from '../Assets/Images/profile.png'
 import '../Assets/Styles/profile.css';
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from 'react';
-import getUserDetails from '../firebase/getUserDetails.js';
-
+import getUserDetails from '../firebase/getUserDetails';
+import getUserImages from "../firebase/getUserImages";
+import fetchAllImages from '../Assets/image-processing/fetchAllImages';
 function Profile() {
+
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const navigate = useNavigate();
-    const tempArr =[
-        {image:temp},
-        {image:temp},
-        {image:temp},
-        {image:temp}
-    ];
+    const [images, setImages] = useState([]);
+
 
     useEffect(()=>{
        getUserDetails().then((res)=>{
@@ -22,8 +20,19 @@ function Profile() {
            setName(name);
            setEmail(email);
        })
+        getUserImages().then((res)=>{
+            const {status, payload} = res;
+            if(status){
+                fetchAllImages(payload.message).then((res)=>{
+                    setImages(res);
+                })
+            }else{
+                console.log('An error has occurred');
+            }
+        }).catch(()=>{
+                console.log('An error has occurred');
+        })
     },[])
-
 
 
     function routeEdit(){
@@ -34,6 +43,7 @@ function Profile() {
         const data = {image:props.image}
         navigate('/viewIndividualImage', { state: data })
     }
+
     return (
         <div>
             <NavMain />
@@ -53,10 +63,10 @@ function Profile() {
                             <p>Followers:</p>
                         </div>
                     </div>
-                    <div id={'profile-list-images'} className={'d-flex flex-wrap'}>
-                        {tempArr.length !== 0?
-                            tempArr.map((value,index)=>(
-                              <img src={temp} onClick={()=>route(value)} key={index}/>
+                    <div id={'profile-list-images'} className={'d-flex flex-wrap p-2'}>
+                        {images.length !== 0?
+                            images.map((value,index)=>(
+                              <img src={value} onClick={()=>route(value)} key={index}/>
                             ))
                             :
                             <>Upload an image to see it here!</>
