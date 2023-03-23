@@ -7,8 +7,14 @@ export default async function fetchAllImages(data){
             })
             imagesArr.push(response.url);
         }
-        return imagesArr;
+        return {
+            status:true,
+            images:imagesArr
+        };
     }catch(error){
         console.error(error);
+        return {
+            status:false,
+        }
     }
 }

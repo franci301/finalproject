@@ -11,7 +11,7 @@ function Profile() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState(null);
 
 
     useEffect(()=>{
@@ -24,7 +24,11 @@ function Profile() {
             const {status, payload} = res;
             if(status){
                 fetchAllImages(payload.message).then((res)=>{
-                    setImages(res);
+                    if(res.status){
+                        setImages(res.images);
+                    }else{
+                        console.log('An error has occurred')
+                    }
                 })
             }else{
                 console.log('An error has occurred');
@@ -64,7 +68,7 @@ function Profile() {
                         </div>
                     </div>
                     <div id={'profile-list-images'} className={'d-flex flex-wrap p-2'}>
-                        {images.length !== 0?
+                        {images !== null?
                             images.map((value,index)=>(
                               <img src={value} onClick={()=>route(value)} key={index}/>
                             ))
