@@ -17,6 +17,7 @@ import ViewIndividualImage from "../Components/ViewIndividualImage";
 import UploadPhotoPage from "./UploadPhotoPage";
 import UploadImage from "./imageUploadSequence/UploadImage";
 import ShowMapPage from './imageUploadSequence/showMapPage';
+import AppInformationPage from "./appInformationPage";
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
           <Route path='/uploadPhoto' element={<UploadPhotoPage/>}/>
           <Route path='/uploadImage' element={<UploadImage/>}/>
           <Route path='/verifyMap' element={<ShowMapPage/>}/>
+          <Route path='/appInformation' element={<AppInformationPage/>}/>
         </Routes>
         <ScrollToTop/>
       </Router>

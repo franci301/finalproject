@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom";
 import NavMain from "../../Layouts/NavMain";
-import getLatLong from "../../Assets/image-processing/getLatLong";
+import getLatLong from "../../GetAndSet/getLatLong";
 import  Dropzone  from "react-dropzone";
 import { Palette } from "color-thief-react";
-import Vibrant from 'node-vibrant';
 import nearestColor from 'nearest-color';
-import colourHex from "../../Assets/image-processing/colourNames";
+import colourHex from "../../Assets/image-processing/colourNamesExhaustive";
 import '../../Assets/Styles/bottomComp.css'
-
-import { GetColorName } from 'hex-color-to-color-name';
-import getProminantColour from "./getProminantColour";
+import getProminantColour from "../../GetAndSet/getProminantColour";
 
 export default function UploadImage() {
 
@@ -69,7 +66,7 @@ export default function UploadImage() {
     };
 
     function editTags(){
-        setEditableTxt('Colour tags are now editable!')
+        setEditableTxt('Colour tags are now editable!');
         setEditableBoolean(true);
     }
 
@@ -146,7 +143,7 @@ export default function UploadImage() {
                 <Dropzone onDrop={handleDrop} >
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
-                            <input {...getInputProps()} />
+                            <input {...getInputProps({capture:false})} />
                             {imageURL === null?
                                 <p>Click to analyse photos</p>:
                                 <p>Upload a different photo</p>

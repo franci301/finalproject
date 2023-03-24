@@ -2,7 +2,8 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import NavMain from "../../Layouts/NavMain";
 import SingleImgMap from "../../Components/SingleImgMap";
-import UploadFileNameToDatabase from "../../firebase/UploadFileNameToDatabase";
+import UploadFileNameToDatabase from "../../GetAndSet/UploadFileNameToDatabase";
+import UploadImageToDatabase from "../../GetAndSet/UploadImageToDatabase";
 
 export default function ShowMapPage() {
 
@@ -35,6 +36,10 @@ export default function ShowMapPage() {
         setEditabale(true);
     }
 
+      /**
+     * @param {number} lat - latitude of image
+     * @param {number} lng - longitude of image
+     */
     function handleMarkerDrag(lat, lng) {
         setLatLong({state: 'resolved', latitude: lat, longitude: lng});
     }
@@ -70,7 +75,7 @@ export default function ShowMapPage() {
             });
             await response.json().then((res)=>{
                 if(res.success === true){
-                    handleDatabaseUpload(dominantColour + '/'+ res.payload.fileName);
+                    handleDatabaseUpload(dominantColour , res.payload.fileName);
                 }else{
                     setErrorText('Something went wrong, please try again. \n If the issue persists, contact customer support.');
                 }
@@ -80,15 +85,32 @@ export default function ShowMapPage() {
         }
     }
 
-    async function handleDatabaseUpload(fileName){
+    /**
+     * @param {string} folderName - The dominant color of the image
+     * @param {number} imageName - The name of the image
+     */
+    async function handleDatabaseUpload(folderName, imageName){
+        //  this uploads the image to the users image ref for personal fetching
+        const fileName = folderName + '/' + imageName;
         const outcome =  await UploadFileNameToDatabase(fileName);
-        if(outcome.status === true){
+        if(outcome.status){
             console.log(outcome.message);
-            navigate('/profile');
+
+            //     this uploads the image name to a document
+            //     creates document if it doesn't exist
+            const result = await UploadImageToDatabase(folderName, imageName);
+            if(result.status){
+                console.log(result.message);
+                // navigate('/profile');
+            }else{
+                console.log(result.error);
+            }
 
         }else{
             console.log(outcome.message)
         }
+
+
     }
 
     return (

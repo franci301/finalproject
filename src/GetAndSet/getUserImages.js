@@ -1,4 +1,4 @@
-import {auth, db} from './_firebase-config';
+import {auth, db} from '../firebase/_firebase-config';
 import {doc, getDoc, collection} from 'firebase/firestore';
 
 export default async function getUserImages(){

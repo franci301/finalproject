@@ -1,45 +1,25 @@
-// store list of previous searches in local storage
-// clear local storage on page close or logout
-
 import '../Assets/Styles/topComponent.css';
 import 'react-history-search/dist/index.css';
 import { useState,useEffect } from 'react';
 import { Provider, History, Trigger } from 'react-history-search';
+import GetAllImagesInFolder from "../GetAndSet/GetAllImagesInFolder";
+import GetImagesFromFolder from "../GetAndSet/GetImagesFromFolder";
 
-function TopComponent() {
-    // const [text, setText] = useState('');
-    const [items,setItems] = useState(['aa']);
+export default function TopComponent() {
 
-    useEffect(()=>{
-        let history = localStorage.getItem('searchHistory');
-        setItems(items);
-    },[]);
-
-    const handleSearch = (value) => {
-        // alert(`Call some API to handle search keyword: ${value}`);
-    };
-
-    // function saveToLocal() {
-    //     if (localStorage.getItem('searchHistory')) {
-    //         let history = JSON.parse(localStorage.getItem('searchHistory'));
-    //         let temp = [];
-    //         if (history.length < 5) {
-    //             for (let elm of history) {
-    //                 temp.push(elm);
-    //             }
-    //             temp.push(text);
-    //         } else {
-    //             history.pop();
-    //             history.push(text);
-    //             temp = history;
-    //         }
-    //         localStorage.setItem('searchHistory', JSON.stringify(temp));
-    //
-    //     } else {
-    //         let historyArray = [text, text];
-    //         localStorage.setItem('searchHistory', JSON.stringify(historyArray));
-    //     }
-    // }
+    const [images,setImagesArr] = useState(null);
+    async function handleSearch(value){
+        //  need to add regex or something to ensure I only add the hyphen to the one space separating the two words
+        value = value.replace(' ', '-');
+        const result = await GetAllImagesInFolder(value);
+        if(result.status){
+            let imagesCollection = result.payload.message;
+            const imagesArr = await GetImagesFromFolder(value,imagesCollection);
+            setImagesArr(imagesArr.images);
+        }else{
+            console.log(result.payload.message)
+        }
+    }
 
     return (
         <div className="top d-flex flex-row">
@@ -50,17 +30,20 @@ function TopComponent() {
             }}>
                 <History isHint isTabFill isRemoveHistory>
                     <input type="text" name="" id="top-search" placeholder="Search for pictures"  />
-                    {/*onChange={(event) => { setText(event.target.value) }}*/}
                 </History>
                 <Trigger dataId="top-search">
                     <button>Search</button>
                 </Trigger>
-                    {/*<button onClick={saveToLocal}>Search Icon</button>*/}
             </Provider>
-
-            {/* need to create the popup thing which suggests search history */}
+            {images !== null?
+                images.map((value,index)=>(
+                  <img src={value}  key={index} style={{
+                      width:'50%'
+                  }}/>
+                ))
+                :
+                <></>
+            }
         </div>
     )
 }
-
-export default TopComponent;

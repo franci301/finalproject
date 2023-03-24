@@ -16,7 +16,6 @@
         "file-type": "^18.2.1",
         "firebase": "^9.17.1",
         "firebaseui": "^6.0.2",
-        "hex-color-to-color-name": "^1.0.2",
         "jimp": "^0.22.7",
         "js-cookie": "^3.0.1",
         "nearest-color": "^0.4.4",

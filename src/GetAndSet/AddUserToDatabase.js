@@ -1,4 +1,4 @@
-import { db } from './_firebase-config';
+import { db } from '../firebase/_firebase-config';
 import {setDoc, doc, getDoc} from 'firebase/firestore';
 
 export default async function AddUserToDatabase(name,email,result){

@@ -3,9 +3,9 @@ import temp from '../Assets/Images/profile.png'
 import '../Assets/Styles/profile.css';
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from 'react';
-import getUserDetails from '../firebase/getUserDetails';
-import getUserImages from "../firebase/getUserImages";
-import fetchAllImages from '../Assets/image-processing/fetchAllImages';
+import getUserDetails from '../GetAndSet/getUserDetails';
+import getUserImages from "../GetAndSet/getUserImages";
+import fetchAllImages from '../GetAndSet/fetchAllImages';
 function Profile() {
 
     const navigate = useNavigate();

@@ -1,7 +1,10 @@
-import {auth, db} from './_firebase-config';
+import {auth, db} from '../firebase/_firebase-config';
 import {doc,collection, updateDoc, arrayUnion} from "firebase/firestore";
 
-export default async function UploadFileNameToDatabase(imageName,folderName){
+    /**
+     * @param {string} imageName - The name of the image and folder {folderName}/{image}
+     */
+export default async function UploadFileNameToDatabase(imageName){
     return new Promise((resolve, reject) =>{
         const userDetails = auth.onAuthStateChanged(function(user){
             if(user){
@@ -9,13 +12,13 @@ export default async function UploadFileNameToDatabase(imageName,folderName){
                 const docRef = doc(imageCollectionRef,user.uid);
                 updateDoc(docRef,{
                     images:arrayUnion(...[imageName])
-                }).then((res)=>{
+                }).then(()=>{
                     userDetails();
                     resolve({
                         status:true,
-                        message:'Image uploaded successfully',
+                        message:'Image uploaded successfully to user information',
                     })
-                }).catch((error)=>{
+                }).catch(()=>{
                     userDetails();
                     resolve({
                         status:false,

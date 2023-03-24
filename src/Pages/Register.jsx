@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';
-import AddUserToDatabase from "../firebase/AddUserToDatabase";
+import AddUserToDatabase from "../GetAndSet/AddUserToDatabase";
 
 function Register() {
 

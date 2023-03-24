@@ -1,5 +1,4 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
-// import profile from '../Assets/Images/profile.png';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { getAuth, signOut } from "firebase/auth";
@@ -50,7 +49,7 @@ function NavMain() {
               {/* <NavDropdown.Divider /> */}
 
               <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href='/'>Advanced Search</Nav.Link>
+              <Nav.Link href='/appInformation'>App Information</Nav.Link>
               {login === true ?
                 <div className='parentLogin'>
                   <Nav.Link href="/profile">Profile</Nav.Link>

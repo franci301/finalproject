@@ -1,9 +1,19 @@
+import '../Assets/Styles/bottomComp.css'
 import Card from '../Components/Card'
 import {useNavigate} from "react-router-dom";
-import '../Assets/Styles/bottomComp.css'
+import {useEffect, useState} from "react";
+import {auth} from '../firebase/_firebase-config';
 
 function BottomComp() {
     const navigate = useNavigate();
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(()=>{
+        auth.onAuthStateChanged(function(user){
+            if(user) setLoggedIn(true);
+        })
+    },[])
+
     let popularItems = [{name:'Location 1',rating:5, distance:'2km'},{name:'Location 2',rating:4,distance:'5km'}]
 
     function routeUploadImages(){
@@ -21,7 +31,13 @@ function BottomComp() {
                     <>nope</>
                 }
             </div>
-            <button onClick={routeUploadImages}>Upload Images</button>
+            {loggedIn?
+                    <button onClick={routeUploadImages}>Upload Images</button>
+                    :
+                <>
+                    Please login or create an account to upload a photo
+                </>
+            }
         </div>
     );
 

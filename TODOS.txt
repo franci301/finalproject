@@ -13,7 +13,7 @@ GENERAL TODOS:
 - [ ]  get user location data for Google Maps
 - [ ]  clicking on a map image gives popup/page with relevant colour tags and ratings
 - [ ]  get user location on homepage too
-
+- [ ]  add parameters to each function
 
 TODAY'S TODOS:
 - [X]  display to user the color palette and the corresponding names got and ask if they think it is correct?
@@ -25,8 +25,7 @@ TODAY'S TODOS:
 - [ ]  remove option to take photo directly within the app
 - [ ]  make map page taller when submitted photo
 - [ ]  add in error checks for empty postcode --> add condition to load map being that postcode is false and set initial postcode to true
-- [ ]  what i can do is add the primary colour to the image name so that i can always find the single image and i dont have to save multiple images.
-- [ ]  then i also have to get the primary colour of an image and use that to save it to the 'database'
+- [ ]  add in a general colour palette information page displaying all the possible colour palettes
 
 IMPROVEMENTS BASED ON TIME
 - [ ]  get the nearest colours based on users search word
@@ -34,3 +33,4 @@ IMPROVEMENTS BASED ON TIME
 Library to look into:
 https://www.npmjs.com/package/color-namer
 https://www.npmjs.com/package/nearest-color
+
