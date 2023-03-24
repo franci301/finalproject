@@ -1,0 +1,12 @@
+
+- [ ] The system must allow users to search the application by image colour – upon entering a search query the user will be shown a corresponding result
+^ need to modify the search param so that i add a hypher between any spaces which arent at the end or beginning of the phrase
+- [ ] The system must show search results based on user proximity – the user can modify the search radius when searching
+- [ ] The system must show search results in a map with icons indicating each location – upon searching the user will be shown a map with dots containing the information searched for
+- [ ] The system must include a recommendation system – the highest rated and closet photos to the user’s current location will be displayed below the map
+- [ ] The system must allow the user to search both by colour and proximity – when searching for an image the user will be able to select the colour and distance from their current location
+- [ ] The system must allow for the dots on the map to be clickable – they will take the user to a separate page where more information about the picture is displayed
+- [0.5] The system must be able to store the image, related colour palette and location data in the database for later retrieval
+- [ ] The system must allow for users with an account to rate an uploaded image – if the user attempts to rate an image without being signed in they will be directed to the login / register page
+- [ ] The system must allow for the user profile to be hidden from other – when they wish, users will be able to turn on private mode and hide their account from others
+- [ ] The system must include the average rating of a user’s
