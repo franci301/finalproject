@@ -18,7 +18,9 @@ import UploadPhotoPage from "./UploadPhotoPage";
 import UploadImage from "./imageUploadSequence/UploadImage";
 import ShowMapPage from './imageUploadSequence/showMapPage';
 import AppInformationPage from "./appInformationPage";
-
+import SearchResultsPage from './SerchResultsPage';
+import ViewAllOnMap from "./ViewSearchMap";
+import PaletteInformation from "./PaletteInformation";
 function App() {
 
   return (
@@ -36,6 +38,9 @@ function App() {
           <Route path='/uploadImage' element={<UploadImage/>}/>
           <Route path='/verifyMap' element={<ShowMapPage/>}/>
           <Route path='/appInformation' element={<AppInformationPage/>}/>
+          <Route path='/searchResults' element={<SearchResultsPage/>}/>
+          <Route path='/ViewOnMap' element={<ViewAllOnMap/>}/>
+          <Route path='/paletteInformation' element={<PaletteInformation/>}/>
         </Routes>
         <ScrollToTop/>
       </Router>

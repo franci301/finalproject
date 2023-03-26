@@ -1,5 +1,7 @@
 import Vibrant from "node-vibrant";
-
+/**
+ * @param {string} imageObject - Image object
+ */
 export default async function getProminantColour(imageObject){
     return new Promise((resolve, reject) =>{
         Vibrant.from(imageObject).getPalette((err, palette) => {

@@ -4,6 +4,7 @@ import NavMain from "../../Layouts/NavMain";
 import SingleImgMap from "../../Components/SingleImgMap";
 import UploadFileNameToDatabase from "../../GetAndSet/UploadFileNameToDatabase";
 import UploadImageToDatabase from "../../GetAndSet/UploadImageToDatabase";
+import UploadInformationToDatabase from "../../GetAndSet/UploadInformationToDatabase";
 
 export default function ShowMapPage() {
 
@@ -18,6 +19,7 @@ export default function ShowMapPage() {
     const [editable,setEditabale] = useState(false);
     const [nestImage,setImageForNest] = useState(null);
     const [dominantColour, setDominantColour] = useState('');
+    const [colours, setColourNames] = useState([]);
 
     useEffect(() => {
         setImage(location.state.image);
@@ -29,6 +31,7 @@ export default function ShowMapPage() {
         setLocationBool(location.state.locationAvailable);
         setImageForNest(location.state.nestImage);
         setDominantColour(location.state.dominantColor);
+        setColourNames(location.state.colourNames);
     }, [location]);
 
     function showNoText() {
@@ -46,7 +49,6 @@ export default function ShowMapPage() {
 
     async function getPostCode() {
         setErrorText('');
-        console.log(!(postcode.length === 0));
         if(!(postcode.length === 0)){
             const url = `https://api.postcodes.io/postcodes/${postcode}`;
             await fetch(url)
@@ -95,13 +97,18 @@ export default function ShowMapPage() {
         const outcome =  await UploadFileNameToDatabase(fileName);
         if(outcome.status){
             console.log(outcome.message);
-
             //     this uploads the image name to a document
             //     creates document if it doesn't exist
             const result = await UploadImageToDatabase(folderName, imageName);
             if(result.status){
                 console.log(result.message);
-                // navigate('/profile');
+                const res = await UploadInformationToDatabase(imageName,imageCoords,colours);
+                if(res.status){
+                    console.log(res.message);
+                    navigate('/profile');
+                }else{
+                    console.log(res.message);
+                }
             }else{
                 console.log(result.error);
             }

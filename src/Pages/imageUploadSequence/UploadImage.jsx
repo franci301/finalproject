@@ -33,6 +33,9 @@ export default function UploadImage() {
         }
     },[imageColors,imageURL])
 
+    /**
+     * @param {file} acceptedFiles - Image dropped by the user
+     */
     const handleDrop = async (acceptedFiles) => {
 
         // need this format for Google Maps
@@ -59,7 +62,7 @@ export default function UploadImage() {
             setImageCoords({ state: "resolved", latitude, longitude });
         } catch (error) {
             setNoLocation(true);
-            navigator.geolocation.getCurrentPosition(function(position){
+            await navigator.geolocation.getCurrentPosition(function(position){
                 setImageCoords({ state: "resolved", latitude:position.coords.latitude,longitude:position.coords.longitude });
             })
         }
@@ -68,15 +71,6 @@ export default function UploadImage() {
     function editTags(){
         setEditableTxt('Colour tags are now editable!');
         setEditableBoolean(true);
-    }
-
-    function getTagsValue(){
-        const pTags = document.querySelectorAll('.colour-information p');
-        const pValues = [];
-        pTags.forEach(p => {
-            pValues.push(p.innerText);
-        });
-        return pValues;
     }
 
     function routeCheckImageCoords(){
@@ -92,6 +86,18 @@ export default function UploadImage() {
         navigate('/verifyMap',{state:data});
     }
 
+      const colorContainerStyle = {
+        display: 'flex',
+        flexWrap: 'wrap',
+      };
+
+      const colorItemStyle = {
+        flexBasis: '50%',
+        boxSizing: 'border-box',
+        padding: '4px',
+      };
+
+
     return (
 
         <div >
@@ -103,25 +109,28 @@ export default function UploadImage() {
             {imageURL == null?
                 <p>Upload a photo by clicking on the text below!</p>:
                 <>
-                    <Palette src={imageURL} crossOrigin="anonymous" format="hex" colorCount={4}>
+                    <Palette src={imageURL} crossOrigin="anonymous" format="hex" colorCount={8}>
                         {({ data, loading }) => {
                             if (loading) return <>Loading</>;
                             setColors(data);
                             return (
                                 <div>
                                     Palette:
-                                    <ul>
-                                        {data.map((color, index) => (
-                                            <div className={'d-flex flex-row'} key={index}>
-                                                <div  style={{ backgroundColor: color }} className='example-pallet'>
+                                        <ul style={colorContainerStyle}>
+                                          {data.map((color, index) => (
+                                            <li style={colorItemStyle} key={index}>
+                                              <div className="d-flex flex-row">
+                                                <div
+                                                  style={{ backgroundColor: color }}
+                                                  className="example-pallet"
+                                                ></div>
+                                                <div className="d-flex flex-row px-3 align-items-center colour-information">
+                                                  <p contentEditable={editableBoolean}>{colourNames[index]}</p>
                                                 </div>
-                                                <div className={'d-flex flex-row px-3 align-items-center colour-information'}>
-                                                    {/*<p>{color}</p>*/}
-                                                    <p contentEditable={editableBoolean}>{colourNames[index]}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </ul>
+                                              </div>
+                                            </li>
+                                          ))}
+                                        </ul>
                                     {dominantColourName === null?
                                         <>
                                         </>:
@@ -159,8 +168,13 @@ export default function UploadImage() {
                         <div>
                             <h5>Is the generate colour palette correct?</h5>
                             <div className={'d-flex flex-row justify-content-evenly'}>
-                                <button onClick={routeCheckImageCoords}>Yes</button>
+                                <>{imageCoords.state === 'resolved'?
+                                    <button onClick={routeCheckImageCoords}>Yes</button>
+                                        :
+                                        <></>
+                                }
                                 <button onClick={editTags}>No</button>
+                                </>
                             </div>
                             <br/>
                             {editableTxt.length !== 0?
@@ -173,7 +187,6 @@ export default function UploadImage() {
                     }
                 </div>
             </div>
-            {/*<button onClick={routeUploadPhoto}>Upload Photo</button>*/}
         </div>
     );
 }

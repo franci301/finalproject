@@ -1,3 +1,6 @@
+/**
+ * @param {string} data - Path of image(s)
+ */
 export default async function fetchAllImages(data){
     let imagesArr = [];
     try{

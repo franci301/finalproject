@@ -1,6 +1,9 @@
 import {db} from '../firebase/_firebase-config';
 import {doc, getDoc, collection} from "firebase/firestore";
 
+/**
+ * @param {string} folderName - The dominant color of the image
+ */
 export default async function GetAllImagesInFolder(folderName){
     return new Promise((resolve, reject)=>{
         const imageRef = collection(db,'images');

@@ -49,6 +49,7 @@ function NavMain() {
               {/* <NavDropdown.Divider /> */}
 
               <Nav.Link href='/'>Home</Nav.Link>
+              <Nav.Link href='/paletteInformation'>Palette Information</Nav.Link>
               <Nav.Link href='/appInformation'>App Information</Nav.Link>
               {login === true ?
                 <div className='parentLogin'>

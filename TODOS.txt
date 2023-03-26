@@ -25,7 +25,9 @@ TODAY'S TODOS:
 - [ ]  remove option to take photo directly within the app
 - [ ]  make map page taller when submitted photo
 - [ ]  add in error checks for empty postcode --> add condition to load map being that postcode is false and set initial postcode to true
-- [ ]  add in a general colour palette information page displaying all the possible colour palettes
+- [ ]  might modify the homepage so that there is only the map and the top images and move the search and submit to their own pages
+- [ ]  before i show the search results i have to calculate the nearest images to the user
+- [ ]  ask for location permissions on app
 
 IMPROVEMENTS BASED ON TIME
 - [ ]  get the nearest colours based on users search word

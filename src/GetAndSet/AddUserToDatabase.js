@@ -1,6 +1,10 @@
 import { db } from '../firebase/_firebase-config';
 import {setDoc, doc, getDoc} from 'firebase/firestore';
-
+/**
+ * @param {string} name - User's name
+ * @param {number} email - User's email
+ * @param {object} result - User's object
+ */
 export default async function AddUserToDatabase(name,email,result){
     const userCollectionRef = doc(db, 'users', result.user.uid);
     const imagesCollectionRef = doc(db, 'imagesRef', result.user.uid);

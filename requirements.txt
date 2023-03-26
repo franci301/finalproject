@@ -1,5 +1,5 @@
 
-- [ ] The system must allow users to search the application by image colour – upon entering a search query the user will be shown a corresponding result
+- [0.8] The system must allow users to search the application by image colour – upon entering a search query the user will be shown a corresponding result
 ^ need to modify the search param so that i add a hypher between any spaces which arent at the end or beginning of the phrase
 - [ ] The system must show search results based on user proximity – the user can modify the search radius when searching
 - [ ] The system must show search results in a map with icons indicating each location – upon searching the user will be shown a map with dots containing the information searched for

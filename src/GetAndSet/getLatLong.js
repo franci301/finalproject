@@ -1,5 +1,7 @@
 import exifr from "exifr";
-
+/**
+ * @param {string} image - image
+ */
 export default function getLatLong(image) {
     return new Promise((resolve, reject) => {
         exifr.gps(image)
