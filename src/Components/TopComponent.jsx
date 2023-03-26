@@ -11,8 +11,7 @@ export default function TopComponent() {
     const navigate = useNavigate();
 
     async function handleSearch(value){
-        //  need to add regex or something to ensure I only add the hyphen to the one space separating the two words
-        value = value.replace(' ', '-');
+        value = value.replace(/(?<=\S) (?=\S)/g, "-");
         const result = await GetAllImagesInFolder(value);
         if(result.status){
             let imagesCollection = result.payload.message;

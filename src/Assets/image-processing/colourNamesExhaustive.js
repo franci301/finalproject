@@ -65,7 +65,6 @@ export default {
     'white': '#ffffff',
     "light-gray": "#D3D3D3",
     "silver": "#C0C0C0",
-    'light-grey': '#a9a9a9',
     "grey": "#A9A9A9",
     'dark-grey': '#808080',
     'dim-grey': '#696969',
