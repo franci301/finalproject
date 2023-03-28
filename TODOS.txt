@@ -8,7 +8,7 @@ GENERAL TODOS:
 - [ ]  map center should change based on proximity decided on by the user
 
 TODAY'S TODOS:
-- [ ]  ADD IN A WARNING THAT THIS WILL ONLY WORK IF YOU GO TO CAMERA > FORM ATS > MOST COMPATIBLE
+- [ ]  ADD IN A WARNING THAT THIS WILL ONLY WORK IF YOU GO TO CAMERA > FORMATS > MOST COMPATIBLE
 - [ ]  test on android too
 - [ ]  remove option to take photo directly within the app
 - [ ]  make map page taller when submitted photo
@@ -24,5 +24,3 @@ TODAY'S TODOS:
 
 - [ ]  might have to add the nearby images to the db and then add a refresh location button somewhere
 
-IMPROVEMENTS BASED ON TIME
-- [ ]  get the nearest colours based on users search word
