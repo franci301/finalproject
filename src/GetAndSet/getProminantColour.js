@@ -9,7 +9,9 @@ export default async function getProminantColour(imageObject){
                 reject(err);
             }else{
                 const {Vibrant} = palette;
-                resolve(Vibrant.hex);
+                if(Vibrant){
+                    resolve(Vibrant.hex);
+                }
             }
         })
     })

@@ -29,7 +29,7 @@ function Register() {
                     await createUserWithEmailAndPassword(auth, email, password).then((result) => {
                         AddUserToDatabase(name,email,result);
                         Cookies.set('login-token', result.user.uid, { expires: 1 });
-                        navigate('/*');
+                        navigate('/appInformation');
                     }).catch((err) => {
                         switch (err.code) {
                             case 'auth/email-already-in-use':

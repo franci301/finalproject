@@ -34,10 +34,9 @@ export default function UploadImage() {
     },[imageColors,imageURL])
 
     /**
-     * @param {file} acceptedFiles - Image dropped by the user
+     * @param {file} acceptedFiles - Image selected by the user
      */
     const handleDrop = async (acceptedFiles) => {
-
         // need this format for Google Maps
         const imageObject = new Image();
         imageObject.src = URL.createObjectURL(acceptedFiles[0]);
@@ -48,13 +47,17 @@ export default function UploadImage() {
         // image __ for backend
         setImageFornest(acceptedFiles[0]);
         // Dominant colour palette
+        const nearest = nearestColor.from(colourHex);
+
         getProminantColour(imageObject.src).then((res)=>{
-            setHex(res);
-            const nearest = nearestColor.from(colourHex);
-            const dominantColourName = nearest(res).name;
+            if(res){
+                setHex(res);
+                const dominantColourName = nearest(res).name;
+                setDominantColourName(dominantColourName);
+            }
 
-            setDominantColourName(dominantColourName)
-
+        }).catch((err)=>{
+            console.log(err);
         })
 
         try {
@@ -62,9 +65,9 @@ export default function UploadImage() {
             setImageCoords({ state: "resolved", latitude, longitude });
         } catch (error) {
             setNoLocation(true);
-            await navigator.geolocation.getCurrentPosition(function(position){
-                setImageCoords({ state: "resolved", latitude:position.coords.latitude,longitude:position.coords.longitude });
-            })
+            let position = localStorage.getItem('user-location');
+            position = position.split('/');
+            setImageCoords({ state: "resolved", latitude:parseFloat(position[0]),longitude:parseFloat(position[1]) })
         }
     };
 
@@ -73,14 +76,16 @@ export default function UploadImage() {
         setEditableBoolean(true);
     }
 
+
     function routeCheckImageCoords(){
         // set image colours to local storage and add function to be able to go back in the image upload sequence
+
         const data = {
             image:imageObj,
             latLong:imageCoords,
             locationAvailable:noLocation,
             nestImage:imageForNest,
-            dominantColor: dominantColourName,
+            dominantColor: dominantColourName === null? colourNames[0]:dominantColourName ,
             colourNames: colourNames,
         };
         navigate('/verifyMap',{state:data});
@@ -141,7 +146,6 @@ export default function UploadImage() {
                                             <div style={{backgroundColor:hex}} className='example-pallet'>
                                             </div>
                                         </div>
-
                                     }
                                 </div>
                             );
@@ -152,7 +156,7 @@ export default function UploadImage() {
                 <Dropzone onDrop={handleDrop} >
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
-                            <input {...getInputProps({capture:false})} />
+                            <input {...getInputProps()} />
                             {imageURL === null?
                                 <p>Click to analyse photos</p>:
                                 <p>Upload a different photo</p>

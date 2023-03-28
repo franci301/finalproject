@@ -18,9 +18,11 @@ import UploadPhotoPage from "./UploadPhotoPage";
 import UploadImage from "./imageUploadSequence/UploadImage";
 import ShowMapPage from './imageUploadSequence/showMapPage';
 import AppInformationPage from "./appInformationPage";
-import SearchResultsPage from './SerchResultsPage';
 import ViewAllOnMap from "./ViewSearchMap";
 import PaletteInformation from "./PaletteInformation";
+import SearchPage from "./SearchPage";
+import SearchInformationPage from "./SearchInformationPage";
+
 function App() {
 
   return (
@@ -34,13 +36,14 @@ function App() {
           <Route path='/editProfile' element={<EditProfile/>}/>
           <Route path='/popularPage' element={<PopularPage/>}/>
           <Route path='/viewIndividualImage' element={<ViewIndividualImage/>}/>
+          <Route path='/ViewOnMap' element={<ViewAllOnMap/>}/>
           <Route path='/uploadPhoto' element={<UploadPhotoPage/>}/>
           <Route path='/uploadImage' element={<UploadImage/>}/>
           <Route path='/verifyMap' element={<ShowMapPage/>}/>
           <Route path='/appInformation' element={<AppInformationPage/>}/>
-          <Route path='/searchResults' element={<SearchResultsPage/>}/>
-          <Route path='/ViewOnMap' element={<ViewAllOnMap/>}/>
           <Route path='/paletteInformation' element={<PaletteInformation/>}/>
+          <Route path='/searchInformation' element={<SearchInformationPage/>}/>
+          <Route path='/searchPage' element={<SearchPage/>}/>
         </Routes>
         <ScrollToTop/>
       </Router>

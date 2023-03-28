@@ -25,7 +25,7 @@ export default async function GetAllImagesInFolder(folderName){
                 })
             }
         }).catch((err)=>{
-            reject({
+            resolve({
                 status:false,
                 payload:{
                     message:err,

@@ -1,16 +1,15 @@
-import NavMain from "../Layouts/NavMain";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import '../Assets/Styles/topComponent.css';
-export default function SearchResultsPage(){
 
-    const location = useLocation();
+export default function SearchResultsPage({information}){
+
     const navigate = useNavigate()
     const [imagesArr, setImages] = useState(null);
 
     useEffect(()=>{
-        setImages(location.state.data);
-    },[location])
+        setImages(information);
+    },[information])
 
     function routeMap(){
         const data = {images:imagesArr};
@@ -19,20 +18,20 @@ export default function SearchResultsPage(){
 
     return(
         <>
-            <NavMain/>
-            <div className={'d-flex flex-column align-content-center p-4'}>
-                <h3>Search Results are shown here</h3>
-                <div className={'d-flex flex-row results-images-container'}>
-                    {imagesArr !== null?
-                            imagesArr.map((value,index)=>(
-                                <img src={value.image}  key={index} className={'p-2'}/>
-                            ))
-                            :
-                            <></>
-                        }
-                </div>
-                <button onClick={routeMap}>View all on map </button>
+          <div className={'d-flex flex-column align-content-center p-4'}>
+            <div className={'d-flex flex-column results-images-container'}>
+              {imagesArr !== null
+                ? imagesArr.map((value, index) => {
+                      return (
+                        <div className="d-flex flex-row">
+                          <img src={value.image} key={index} className={'p-2 w-50'} />
+                        </div>
+                      );
+                  })
+                : null}
             </div>
+            <button onClick={routeMap}>View all on map</button>
+          </div>
         </>
     )
 }

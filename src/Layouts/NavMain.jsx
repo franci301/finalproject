@@ -47,17 +47,16 @@ function NavMain() {
           <div className='py-3' id='navOptions-container'>
             <Nav>
               {/* <NavDropdown.Divider /> */}
-
               <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href='/paletteInformation'>Palette Information</Nav.Link>
+              <Nav.Link href='/searchPage'>Search</Nav.Link>
+              {login == true?
+                <Nav.Link href='/uploadImage'>Upload</Nav.Link>:null
+              }
               <Nav.Link href='/appInformation'>App Information</Nav.Link>
               {login === true ?
                 <div className='parentLogin'>
-                  <Nav.Link href="/profile">Profile</Nav.Link>
                   <li onClick={handleLogout}>Logout</li>
-                </div>
-                :
-                <></>
+                </div>:null
               }
             </Nav>
           </div>

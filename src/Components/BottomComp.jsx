@@ -31,13 +31,6 @@ function BottomComp() {
                     <>nope</>
                 }
             </div>
-            {loggedIn?
-                    <button onClick={routeUploadImages}>Upload Images</button>
-                    :
-                <>
-                    Please login or create an account to upload a photo
-                </>
-            }
         </div>
     );
 
