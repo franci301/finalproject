@@ -1,24 +1,25 @@
 import {useJsApiLoader, GoogleMap, MarkerF} from "@react-google-maps/api";
-import {useEffect, useMemo, useState} from 'react';
+import {useEffect, useState} from 'react';
 import '../Assets/Styles/MapStyle.css';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import getAllImagesNearMe from "../GetAndSet/getAllImagesNearMe";
 
 
-export default function  MapPage({data}){
+export default function  MapPage(){
     const {isLoaded} = useJsApiLoader({
         googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     });
     if(!isLoaded) return (<div>Loading...</div>);
     return (
-        <Map data={data}/>
+        <Map />
     )
 }
-function Map({data}){
+function Map(){
     const [mapCentre, setLocation] = useState({});
     const [images, setImages] = useState([]);
     const [localImages, setLocalImages] = useState([]);
     const stateVars = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         let position = localStorage.getItem('user-location');
@@ -27,9 +28,10 @@ function Map({data}){
         if (stateVars.state) {
             setImages(stateVars.state.images);
         }else if(['http://localhost:3000/*','http://localhost:3000/'].includes(window.location.href)){
-
             handleFetchAllImagesNearMe().then((res)=>{
                 setLocalImages(res);
+            }).catch((err) =>{
+                console.log(err);
             })
         }
     }, [stateVars.state]);
@@ -48,8 +50,8 @@ function Map({data}){
         mapTypeControl: false
     };
 
-    function log() {
-        console.log('here');
+    function handleIconClick(data){
+        navigate('/viewIndividualImage',{state:data})
     }
     return (
         mapCentre.lat ?
@@ -73,7 +75,7 @@ function Map({data}){
                             <MarkerF key={index} position={{lat:value.image.data.location[0].doubleValue, lng:value.image.data.location[1].doubleValue}} icon={{
                               url: value.image.image,
                               scaledSize: new window.google.maps.Size(50, 50)
-                            }} />
+                            }} onClick={(event) => handleIconClick(value)}/>
                         );
                     })
                     :

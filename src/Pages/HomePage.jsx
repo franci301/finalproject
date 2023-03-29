@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 import getCurrentLocation from "../GetAndSet/getCurrentLocation";
 function HomePage() {
 
-    const [images, setImages] = useState(null);
 
     useEffect(()=>{
 
@@ -29,13 +28,12 @@ function HomePage() {
             <NavMain />
             <div className='d-flex flex-column py-1 px-3' id='homepage-container'>
                 <div className="d-flex justify-content-center" style={{ height: '45vh' }} id='middle-comp'>
-                    <MiddleComp data={images}/>
+                    <MiddleComp />
                 </div>
                 <div className="d-flex justify-content-center pb-4" id='bottom-comp'>
                     <BottomComp />
                 </div>
             </div>
-            {/*<button onClick={getAllImagesNearMe}>Click me</button>*/}
         </div>
     );
 }

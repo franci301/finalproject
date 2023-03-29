@@ -50,13 +50,13 @@ export default async function getAllImagesNearMe(){
         allImagesObj = undefined;
         let validKeys = validImages.keys();
         let temp = [];
-
         for (let key of validKeys) {
           for (let image of validImages.get(key)) {
             let imageReference = await GetSingleImageFromFolder(key, image.image);
             if (imageReference.status) {
               image.image = imageReference.image;
               temp.push({
+                  folderName:key,
                   image:image
               })
             }
@@ -64,7 +64,6 @@ export default async function getAllImagesNearMe(){
 
         }
         validImages = undefined;
-
-    resolve(temp);
+        resolve(temp);
     })
 }

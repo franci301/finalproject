@@ -1,7 +1,5 @@
 
-- [ ] The system must show search results in a map with icons indicating each location – upon searching the user will be shown a map with dots containing the information searched for
 - [ ] The system must include a recommendation system – the highest rated and closet photos to the user’s current location will be displayed below the map
-- [ ] The system must allow for the dots on the map to be clickable – they will take the user to a separate page where more information about the picture is displayed
 - [ ] The system must allow for users with an account to rate an uploaded image – if the user attempts to rate an image without being signed in they will be directed to the login / register page
 - [ ] The system must allow for the user profile to be hidden from other – when they wish, users will be able to turn on private mode and hide their account from others
 - [ ] The system must include the average rating of a user’s
