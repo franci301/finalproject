@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom";
 import NavMain from "../../Layouts/NavMain";
-import getLatLong from "../../GetAndSet/getLatLong";
+import getLatLong from "../../GetAndSet/get/getLatLong";
 import  Dropzone  from "react-dropzone";
 import { Palette } from "color-thief-react";
 import nearestColor from 'nearest-color';
 import colourHex from "../../Assets/image-processing/colourNamesExhaustive";
 import '../../Assets/Styles/bottomComp.css'
-import getProminantColour from "../../GetAndSet/getProminantColour";
+import getProminantColour from "../../GetAndSet/get/getProminantColour";
+import processImage from "../../Assets/image-processing/normaliseRGBValues";
+import handleDropAdvanced from "../../Assets/image-processing/normaliseRGBValues";
 
 export default function UploadImage() {
 
@@ -23,6 +25,7 @@ export default function UploadImage() {
     const [editableBoolean, setEditableBoolean] = useState(false);
     const [editableTxt, setEditableTxt] = useState('');
     const [noLocation, setNoLocation] = useState(false);
+    const [normValues, setNormalizedValues] = useState(null);
 
     useEffect(()=>{
         setColourNames([]);
@@ -46,6 +49,20 @@ export default function UploadImage() {
         setImageCoords({ state: "loading" });
         // image __ for backend
         setImageFornest(acceptedFiles[0]);
+        // get normalized values
+        const file = acceptedFiles[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const values = processImage(img);
+              setNormalizedValues(values);
+            };
+          };
+          reader.readAsDataURL(file);
+        }
         // Dominant colour palette
         const nearest = nearestColor.from(colourHex);
 
@@ -87,6 +104,7 @@ export default function UploadImage() {
             nestImage:imageForNest,
             dominantColor: dominantColourName === null? colourNames[0]:dominantColourName ,
             colourNames: colourNames,
+            normalizedValues: normValues,
         };
         navigate('/verifyMap',{state:data});
     }
@@ -172,7 +190,7 @@ export default function UploadImage() {
                         <div>
                             <h5>Is the generate colour palette correct?</h5>
                             <div className={'d-flex flex-row justify-content-evenly'}>
-                                <>{imageCoords.state === 'resolved'?
+                                <>{imageCoords.state === 'resolved' && normValues !== null?
                                     <button onClick={routeCheckImageCoords}>Yes</button>
                                         :
                                         <></>

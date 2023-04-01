@@ -2,9 +2,9 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import NavMain from "../../Layouts/NavMain";
 import SingleImgMap from "../../Components/SingleImgMap";
-import UploadFileNameToDatabase from "../../GetAndSet/UploadFileNameToDatabase";
-import UploadImageToDatabase from "../../GetAndSet/UploadImageToDatabase";
-import UploadInformationToDatabase from "../../GetAndSet/UploadInformationToDatabase";
+import UploadFileNameToDatabase from "../../GetAndSet/set/uploadFileNameToDatabase";
+import UploadImageToDatabase from "../../GetAndSet/set/uploadImageToDatabase";
+import UploadInformationToDatabase from "../../GetAndSet/set/uploadInformationToDatabase";
 
 export default function ShowMapPage() {
 
@@ -20,6 +20,7 @@ export default function ShowMapPage() {
     const [nestImage,setImageForNest] = useState(null);
     const [dominantColour, setDominantColour] = useState('');
     const [colours, setColourNames] = useState([]);
+    const [normValues, setNormValues] = useState(null);
 
     useEffect(() => {
         setImage(location.state.image);
@@ -32,6 +33,7 @@ export default function ShowMapPage() {
         setImageForNest(location.state.nestImage);
         setDominantColour(location.state.dominantColor);
         setColourNames(location.state.colourNames);
+        setNormValues(location.state.normalizedValues);
     }, [location]);
 
     function showNoText() {
@@ -102,7 +104,7 @@ export default function ShowMapPage() {
             const result = await UploadImageToDatabase(folderName, imageName);
             if(result.status){
                 console.log(result.message);
-                const res = await UploadInformationToDatabase(imageName,imageCoords,colours);
+                const res = await UploadInformationToDatabase(imageName,imageCoords,colours,normValues);
                 if(res.status){
                     console.log(res.message);
                     navigate('/profile');
@@ -116,8 +118,6 @@ export default function ShowMapPage() {
         }else{
             console.log(outcome.message)
         }
-
-
     }
 
     return (

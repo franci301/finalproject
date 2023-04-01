@@ -21,7 +21,8 @@ function BottomComp() {
     }
 
     return (
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column align-items-center'>
+            <h5>Most Popular Locations</h5>
             <div className={'d-flex flex-row pb-5'}>
                 {popularItems.length !== 0 ?
                     popularItems.map((content, index) => (

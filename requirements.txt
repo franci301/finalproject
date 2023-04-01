@@ -1,5 +1,8 @@
 
+LEAVE in the requirments for my report but explain why i didnt do them
 - [ ] The system must include a recommendation system – the highest rated and closet photos to the user’s current location will be displayed below the map
 - [ ] The system must allow for users with an account to rate an uploaded image – if the user attempts to rate an image without being signed in they will be directed to the login / register page
 - [ ] The system must allow for the user profile to be hidden from other – when they wish, users will be able to turn on private mode and hide their account from others
 - [ ] The system must include the average rating of a user’s
+
+

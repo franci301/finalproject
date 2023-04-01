@@ -6,12 +6,12 @@ export default async function GetSingleImageFromFolder(folderName,imageName){
     try{
         const response = await fetch(`http://localhost:3333/images/${folderName}/${imageName}`,{
             method:'GET',
+            referrerPolicy: "unsafe-url",
         })
-
-    return {
-        status:true,
-        image:response.url
-    };
+        return {
+            status:true,
+            image:response.url,
+        };
     }catch(error){
         console.error(error);
         return {

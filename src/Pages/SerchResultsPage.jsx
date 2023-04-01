@@ -24,7 +24,7 @@ export default function SearchResultsPage({information}){
                 ? imagesArr.map((value, index) => {
                       return (
                         <div className="d-flex flex-row">
-                          <img src={value.image} key={index} className={'p-2 w-50'} />
+                          <img src={value.image.image} key={index} className={'p-2 w-50'} />
                         </div>
                       );
                   })

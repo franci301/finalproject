@@ -1,11 +1,10 @@
-import { db } from '../firebase/_firebase-config';
+import { db } from '../../firebase/_firebase-config';
 import {setDoc, doc, getDoc} from 'firebase/firestore';
 /**
- * @param {string} name - User's name
- * @param {number} email - User's email
+ * @param {string} email - User's email
  * @param {object} result - User's object
  */
-export default async function AddUserToDatabase(name,email,result){
+export default async function AddUserToDatabase(email,result){
     const userCollectionRef = doc(db, 'users', result.user.uid);
     const imagesCollectionRef = doc(db, 'imagesRef', result.user.uid);
 
@@ -17,7 +16,6 @@ export default async function AddUserToDatabase(name,email,result){
     const imagesDocRef = imagesDoc.ref.id;
 
     setDoc(userCollectionRef, {
-        name: name,
         email: email,
         imagesDocumentRef: imagesDocRef,
     }).catch((error)=>{console.log(error)})

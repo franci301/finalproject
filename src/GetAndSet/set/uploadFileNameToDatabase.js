@@ -1,4 +1,4 @@
-import {auth, db} from '../firebase/_firebase-config';
+import {auth, db} from '../../firebase/_firebase-config';
 import {doc,collection, updateDoc, arrayUnion} from "firebase/firestore";
 
 /**

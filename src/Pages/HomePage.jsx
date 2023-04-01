@@ -3,7 +3,7 @@ import BottomComp from '../Components/BottomComp';
 import NavMain from '../Layouts/NavMain';
 import '../Assets/Styles/Homepage.css';
 import {useEffect, useState} from "react";
-import getCurrentLocation from "../GetAndSet/getCurrentLocation";
+import getCurrentLocation from "../GetAndSet/get/getCurrentLocation";
 function HomePage() {
 
 
@@ -26,7 +26,7 @@ function HomePage() {
     return (
         <div className='text-secondary d-flex flex-column justify-content-between' >
             <NavMain />
-            <div className='d-flex flex-column py-1 px-3' id='homepage-container'>
+            <div className='d-flex flex-column p-4' id='homepage-container'>
                 <div className="d-flex justify-content-center" style={{ height: '45vh' }} id='middle-comp'>
                     <MiddleComp />
                 </div>

@@ -20,3 +20,9 @@ TODAY'S TODOS:
 - [ ]  might have to add the nearby images to the db and then add a refresh location button somewhere
 - [ ]  option for map view is to load only the locations of the images and when clicking on the location you get the image and i perform a fetch for the image
 
+
+- [ ]  change files to typescript and change file names
+- [ ]  might have to add in a db wipe for submitting the application if I cant get the server to work
+
+
+based on time add in graphs showing how close a colour is to another one etc

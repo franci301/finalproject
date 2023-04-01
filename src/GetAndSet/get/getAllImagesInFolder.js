@@ -1,4 +1,4 @@
-import {db} from '../firebase/_firebase-config';
+import {db} from '../../firebase/_firebase-config';
 import {doc, getDoc, collection} from "firebase/firestore";
 
 /**
@@ -9,7 +9,7 @@ export default async function GetAllImagesInFolder(folderName){
         const imageRef = collection(db,'images');
         const docRef = doc(imageRef, folderName);
         getDoc(docRef).then((res)=>{
-            if(res){
+            if(res.exists()){
                 resolve({
                     status: true,
                     payload:{
@@ -17,7 +17,7 @@ export default async function GetAllImagesInFolder(folderName){
                     },
                 })
             }else{
-                reject({
+                resolve({
                     status:false,
                     payload:{
                         message:'No images have been uploaded under this tag.',

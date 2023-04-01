@@ -1,13 +1,14 @@
 import {collection, doc, setDoc} from "firebase/firestore";
-import {db} from "../firebase/_firebase-config";
+import {db} from "../../firebase/_firebase-config";
 
-export default async function UploadInformationToDatabase(name,coords,colours){
+export default async function UploadInformationToDatabase(name,coords,colours,normValues){
     return new Promise((resolve, reject)=>{
         const imageCollectionRef = collection(db,'imageInformation');
         const docRef = doc(imageCollectionRef,name);
         setDoc(docRef,{
             coords:[coords.latitude,coords.longitude],
             palette: colours,
+            normValues: normValues,
         }).then(()=>{
             resolve({
                 status:true,

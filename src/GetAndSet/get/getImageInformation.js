@@ -1,6 +1,6 @@
 import {collection, doc, getDoc} from "firebase/firestore";
-import {db} from "../firebase/_firebase-config";
-import CalculateValidDistance from "./CalculateValidDistance";
+import {db} from "../../firebase/_firebase-config";
+import CalculateValidDistance from "../calculateValidDistance";
 /**
  * *
  * @param {string} imageName - name of the image
@@ -21,6 +21,7 @@ export default async function GetImageInformation(imageName, range){
                         payload: {
                             location: data.coords.arrayValue.values,
                             colours: data.palette.arrayValue.values,
+                            normValues: data.normValues,
                         },
                     })
                 }else{

@@ -36,7 +36,7 @@ function NavMain() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <div className='d-flex flex-row m-auto align-content-center'>
           <Navbar.Brand href="/*">Application Name</Navbar.Brand>
-          <div className='py-2' id='login-text'>
+          <div className='py-2' id='nav-login-text'>
             {login === true ?
               <Nav.Link href="/profile" className=''>Profile Picture</Nav.Link> :
               <Nav.Link href="/login">Login</Nav.Link>
@@ -49,6 +49,7 @@ function NavMain() {
               {/* <NavDropdown.Divider /> */}
               <Nav.Link href='/'>Home</Nav.Link>
               <Nav.Link href='/searchPage'>Search</Nav.Link>
+              <Nav.Link href='/advancedSearch'>Advanced Search</Nav.Link>
               {login == true?
                 <Nav.Link href='/uploadImage'>Upload</Nav.Link>:null
               }

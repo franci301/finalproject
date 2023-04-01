@@ -22,11 +22,17 @@ import ViewAllOnMap from "./ViewSearchMap";
 import PaletteInformation from "./PaletteInformation";
 import SearchPage from "./SearchPage";
 import SearchInformationPage from "./SearchInformationPage";
+import {Helmet} from "react-helmet";
+import AdvancedSearch from "./AdvancedSearch";
+import AdvancedResults from "./AdvancedResults";
 
 function App() {
 
   return (
     <>
+      <Helmet>
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+      </Helmet>
       <Router>
         <Routes>
           <Route path='/*' element={<HomePage />} />
@@ -44,6 +50,8 @@ function App() {
           <Route path='/paletteInformation' element={<PaletteInformation/>}/>
           <Route path='/searchInformation' element={<SearchInformationPage/>}/>
           <Route path='/searchPage' element={<SearchPage/>}/>
+          <Route path='/advancedSearch' element={<AdvancedSearch/>}/>
+          <Route path='/advancedResults' element={<AdvancedResults/>}/>
         </Routes>
         <ScrollToTop/>
       </Router>

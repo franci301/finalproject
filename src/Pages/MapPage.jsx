@@ -2,7 +2,7 @@ import {useJsApiLoader, GoogleMap, MarkerF} from "@react-google-maps/api";
 import {useEffect, useState} from 'react';
 import '../Assets/Styles/MapStyle.css';
 import {useLocation, useNavigate} from "react-router-dom";
-import getAllImagesNearMe from "../GetAndSet/getAllImagesNearMe";
+import getAllImagesNearMe from "../GetAndSet/get/getAllImagesNearMe";
 
 
 export default function  MapPage(){
@@ -27,7 +27,7 @@ function Map(){
         setLocation({lat: parseFloat(position[0]), lng: parseFloat(position[1])});
         if (stateVars.state) {
             setImages(stateVars.state.images);
-        }else if(['http://localhost:3000/*','http://localhost:3000/'].includes(window.location.href)){
+        }else if(['http://localhost:3000/*','http://localhost:3000/','https://finalproject-76a75.web.app/*','https://finalproject-76a75.web.app/'].includes(window.location.href)){
             handleFetchAllImagesNearMe().then((res)=>{
                 setLocalImages(res);
             }).catch((err) =>{
@@ -60,10 +60,10 @@ function Map(){
                 {images && images.length > 0 ?
                     images.map((value, index) => {
                         return (
-                            <MarkerF key={index} position={{lat:value.imageInfo.location[0].doubleValue, lng:value.imageInfo.location[1].doubleValue}} icon={{
-                              url: value.image,
+                            <MarkerF key={index} position={{lat:value.image.data.location[0].doubleValue, lng:value.image.data.location[1].doubleValue}} icon={{
+                              url: value.image.image,
                               scaledSize: new window.google.maps.Size(50, 50)
-                            }} />
+                            }} onClick={(event) => handleIconClick(value)} />
                         );
                     })
                     :

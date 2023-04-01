@@ -1,7 +1,7 @@
 import searchShortcut from "../Assets/image-processing/searchShortcut";
-import GetAllImagesInFolder from "./GetAllImagesInFolder";
-import GetImagesFromFolder from "./GetImagesFromFolder";
-import GetImageInformation from "./GetImageInformation";
+import GetAllImagesInFolder from "./get/getAllImagesInFolder";
+import GetImagesFromFolder from "./get/getImagesFromFolder";
+import GetImageInformation from "./get/getImageInformation";
 /**
  * *
  * @param {string} value - the name of the folder/ colour which the user wishes to search for
@@ -66,7 +66,9 @@ export default async function lazySearch(value,range) {
             let name = temp[temp.length - 1];
             const imageInfo = await GetImageInformation(name, range);
             if(imageInfo.status){
-                let data ={imageInfo: imageInfo.payload, image:image};
+                let data ={folderName: temp[temp.length-2], image:{
+                    data: imageInfo.payload, image:image
+                }};
                 storeInformation.push(data);
             }
         }

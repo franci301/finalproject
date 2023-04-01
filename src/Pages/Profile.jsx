@@ -3,9 +3,9 @@ import temp from '../Assets/Images/profile.png'
 import '../Assets/Styles/profile.css';
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from 'react';
-import getUserDetails from '../GetAndSet/getUserDetails';
-import getUserImages from "../GetAndSet/getUserImages";
-import fetchAllImages from '../GetAndSet/fetchAllImages';
+import getUserDetails from '../GetAndSet/get/getUserDetails';
+import getUserImages from "../GetAndSet/get/getUserImages";
+import fetchAllImages from '../GetAndSet/get/fetchAllImages';
 function Profile() {
 
     const navigate = useNavigate();
@@ -17,7 +17,9 @@ function Profile() {
     useEffect(()=>{
        getUserDetails().then((res)=>{
            const {name,email} = res;
-           setName(name);
+           if(name){
+               setName(name);
+           }
            setEmail(email);
        })
         getUserImages().then((res)=>{
@@ -33,8 +35,8 @@ function Profile() {
             }else{
                 console.log('An error has occurred');
             }
-        }).catch(()=>{
-                console.log('An error has occurred');
+        }).catch((err)=>{
+                console.log(err);
         })
     },[])
 
@@ -44,7 +46,7 @@ function Profile() {
     }
 
     function route(props){
-        const data = {image:props.image}
+        const data = {props}
         navigate('/viewIndividualImage', { state: data })
     }
 
@@ -54,7 +56,10 @@ function Profile() {
             <div className='d-flex flex-column '>
                 <div id='profile-top' className='d-flex flex-column align-items-center'>
                         <img src={temp} alt="Profile Picture" />
-                        <h6>{name}</h6>
+                        {name && name.length >0?
+                            <h6>{name}</h6>:
+                            null
+                        }
                         <h6>{email}</h6>
                     <div>
                         <button onClick={routeEdit}>Edit Profile</button>
@@ -70,7 +75,7 @@ function Profile() {
                     <div id={'profile-list-images'} className={'d-flex flex-wrap p-2'}>
                         {images !== null?
                             images.map((value,index)=>(
-                              <img src={value} onClick={()=>route(value)} key={index}/>
+                              <img src={value} key={index}/>
                             ))
                             :
                             <></>

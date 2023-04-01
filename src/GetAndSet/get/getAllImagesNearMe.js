@@ -1,8 +1,8 @@
-import {db} from '../firebase/_firebase-config';
+import {db} from '../../firebase/_firebase-config';
 import {collection,getDocs} from "firebase/firestore";
-import GetAllImagesInFolder from "./GetAllImagesInFolder";
-import GetImageInformation from "./GetImageInformation";
-import GetSingleImageFromFolder from "./GetSingleImageFromFolder";
+import GetAllImagesInFolder from "./getAllImagesInFolder";
+import GetImageInformation from "./getImageInformation";
+import GetSingleImageFromFolder from "./getSingleImageFromFolder";
 
 export default async function getAllImagesNearMe(){
     return new Promise(async (resolve, reject) => {

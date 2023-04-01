@@ -5,6 +5,7 @@ import { auth } from '../firebase/_firebase-config';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import Cookies from 'js-cookie';
 import NavMain from '../Layouts/NavMain';
+import AddUserToDatabase from "../GetAndSet/set/addUserToDatabase";
 
 
 function Login() {
@@ -19,11 +20,12 @@ function Login() {
         provider.setCustomParameters({ prompt: 'select_account' });
 
         signInWithPopup(auth, provider)
-            .then((result) => {
+            .then(async (result) => {
                 // const credential = GoogleAuthProvider.credentialFromResult(result);
                 // const token = credential.accessToken;
                 const user = result.user;
-                Cookies.set('login-token', user.uid, { expires: 1 });
+                await AddUserToDatabase(result.user.email, result);
+                Cookies.set('login-token', user.uid, {expires: 1});
                 navigate('/*');
             }).catch((error) => {
                 // const errorCode = error.code;
@@ -84,38 +86,46 @@ function Login() {
         }
     }
 
+    function routeRegister(){
+        navigate('/register')
+    }
+
     return (
         <>
-            <div>
-                <NavMain />
-
-                <div className='d-flex flex-col justify-content-center py-4' id='login-height'>
-                    <div id='login-container'>
-                        <div id='input1'>
-                            <input type="text" placeholder="Email" onChange={(event) => { setEmail(event.target.value) }} />
-                        </div>
-                        <div id='input2'>
-                            <input type="password" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
-                        </div>
-                        <div id='button-container'>
-                            <button onClick={handleLogin}>Login</button>
-                        </div>
-                        <div>
-                            <button onClick={handleGoogleLogin}>Login with Google</button>
-                        </div>
-                        <div>
-                            <button onClick={handleResetPassword}>Forgot Password?</button>
-                        </div>
-                        <div className='text-danger'>
+            <NavMain />
+            <div className='d-flex flex-column justify-content-center align-items-center p-4'>
+                <div id={'login-text'} className={'py-3'}>
+                    <h2>Welcome back!</h2>
+                </div>
+                <div className='login-container'>
+                    <div id='input1'>
+                        <input type="text" placeholder="Email" onChange={(event) => { setEmail(event.target.value) }} />
+                    </div>
+                    <div id='input2'>
+                        <input type="password" placeholder="Password" onChange={(event) => { setPassword(event.target.value) }} />
+                    </div>
+                    <div className={'d-flex flex-row'} id='options-button-container'>
+                        <button id={'login-button'} onClick={handleLogin}>Login</button>
+                        <button onClick={routeRegister}>Register</button>
+                    </div>
+                     <div id={'reset-password'}>
+                        <p onClick={handleResetPassword}>Reset Password</p>
+                    </div>
+                    <div className="horizontal-line-with-text">
+                          <div className="line start"></div>
+                          <div className="text">Login with</div>
+                          <div className="line end"></div>
+                    </div>
+                    <div>
+                        <button onClick={handleGoogleLogin}>Google</button>
+                    </div>
+                    <div className={'error-container d-flex align-items-center justify-content-center'}>
+                        <h5 className='text-danger'>
                             {error}
-                        </div>
-                        <div id='register-container' >
-                            <Link style={{ textDecoration: 'none', color: 'black' }} to='/register'>REGISTER</Link>
-                        </div>
+                        </h5>
                     </div>
                 </div>
             </div>
-
         </>
     )
 
