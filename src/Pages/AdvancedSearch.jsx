@@ -4,9 +4,13 @@ import {useState} from "react";
 import processImage from "../Assets/image-processing/normaliseRGBValues";
 import advancedSearch from "../GetAndSet/advancedSearch";
 import {useNavigate} from "react-router-dom";
+import {Slider} from "@mui/material";
 export default function AdvancedSearch(){
+
     const [rgbNorm, setRgbNorm] = useState(null);
+    const [range, setValue] = useState(2);
     const navigate = useNavigate();
+
      const handleDrop = (e) => {
         const file = e[0];
         if (file) {
@@ -17,7 +21,7 @@ export default function AdvancedSearch(){
             img.onload = async () => {
                 const norm = processImage(img);
                 setRgbNorm(norm);
-                const results = await advancedSearch(norm);
+                const results = await advancedSearch(norm,range);
                 if(results.length !== 0){
                     navigate('/advancedResults',{
                     state:{
@@ -33,11 +37,15 @@ export default function AdvancedSearch(){
         }
       }
 
+       const handleChange = ( event,newValue) => {
+        setValue(newValue);
+      };
+
 
     return(
         <>
             <NavMain/>
-            <div>
+            <div className='d-flex p-4'>
             <Dropzone onDrop={handleDrop} >
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
@@ -49,6 +57,21 @@ export default function AdvancedSearch(){
                         </div>
                     )}
                 </Dropzone>
+            </div>
+            <div className={'d-flex flex-column p-4'}>
+                <p>Search radius (km):</p>
+                <br/>
+                <Slider
+                  aria-label="Temperature"
+                  defaultValue={2}
+                  valueLabelDisplay="on"
+                  onChange={handleChange}
+                  step={2}
+                  marks
+                  min={2}
+                  max={14}
+                  getAriaValueText={value => `${value} km`}
+                />
             </div>
         </>
     )

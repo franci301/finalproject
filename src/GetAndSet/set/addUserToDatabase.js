@@ -7,16 +7,19 @@ import {setDoc, doc, getDoc} from 'firebase/firestore';
 export default async function AddUserToDatabase(email,result){
     const userCollectionRef = doc(db, 'users', result.user.uid);
     const imagesCollectionRef = doc(db, 'imagesRef', result.user.uid);
-
-    await setDoc(imagesCollectionRef, {
-        images:[],
-    });
-
     const imagesDoc = await getDoc(imagesCollectionRef);
-    const imagesDocRef = imagesDoc.ref.id;
 
-    setDoc(userCollectionRef, {
-        email: email,
-        imagesDocumentRef: imagesDocRef,
-    }).catch((error)=>{console.log(error)})
+    if((await getDoc(imagesCollectionRef)).exists()){
+        console.log('User already has an account');
+    }else{
+        await setDoc(imagesCollectionRef, {
+            images:[],
+        });
+           const imagesDocRef = imagesDoc.ref.id;
+            setDoc(userCollectionRef, {
+                email: email,
+                imagesDocumentRef: imagesDocRef,
+            }).catch((error)=>{console.log(error)})
+    }
+
 }

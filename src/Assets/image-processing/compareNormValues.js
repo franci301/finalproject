@@ -1,6 +1,6 @@
 import rgbToLab from "./rgbTolab";
 
-export default function compareRGBArrays(arr1, arr2, similarityThreshold = 2.3, minSimilarBlocks = 4) {
+export default function compareRGBArrays(arr1, arr2, similarityThreshold = 10, minSimilarBlocks = 4) {
   let similarBlocks = 0;
 
   for (let i = 0; i < arr1.length; i++) {
@@ -12,11 +12,11 @@ export default function compareRGBArrays(arr1, arr2, similarityThreshold = 2.3, 
       Math.pow(color1.a - color2.a, 2) +
       Math.pow(color1.b - color2.b, 2)
     );
-
     if (distance <= similarityThreshold) {
       similarBlocks++;
     }
   }
+  console.log(similarBlocks);
 
   return similarBlocks >= minSimilarBlocks;
 }

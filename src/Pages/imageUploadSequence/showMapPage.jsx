@@ -16,7 +16,7 @@ export default function ShowMapPage() {
     const [errorText, setErrorText] = useState('');
     const [postcode, setPostcode] = useState('');
     const [locationBool, setLocationBool] = useState(false);
-    const [editable,setEditabale] = useState(false);
+    const [editable,setEditable] = useState(false);
     const [nestImage,setImageForNest] = useState(null);
     const [dominantColour, setDominantColour] = useState('');
     const [colours, setColourNames] = useState([]);
@@ -38,7 +38,7 @@ export default function ShowMapPage() {
 
     function showNoText() {
         setErrorText('Drag the image to the correct location or enter the postcode in the box below.\n Be aware that currently, the postcode feature only works for the UK');
-        setEditabale(true);
+        setEditable(true);
     }
 
       /**
@@ -55,11 +55,14 @@ export default function ShowMapPage() {
             const url = `https://api.postcodes.io/postcodes/${postcode}`;
             await fetch(url)
                 .then(response => response.json())
-                .then(data => setLatLong({
-                    state: 'resolved',
-                    latitude: data.result.latitude,
-                    longitude: data.result.longitude
-                }))
+                .then(data => {
+                    setLatLong({
+                        state: 'resolved',
+                        latitude: data.result.latitude,
+                        longitude: data.result.longitude
+                    });
+                    setEditable(false);
+                })
                 .catch(error => setErrorText(error));
         }else{
             setErrorText('Postcode cannot be empty')

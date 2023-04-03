@@ -9,7 +9,6 @@ import colourHex from "../../Assets/image-processing/colourNamesExhaustive";
 import '../../Assets/Styles/bottomComp.css'
 import getProminantColour from "../../GetAndSet/get/getProminantColour";
 import processImage from "../../Assets/image-processing/normaliseRGBValues";
-import handleDropAdvanced from "../../Assets/image-processing/normaliseRGBValues";
 
 export default function UploadImage() {
 
