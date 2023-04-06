@@ -8,8 +8,9 @@ import nearestColor from 'nearest-color';
 import colourHex from "../../Assets/image-processing/colourNamesExhaustive";
 import '../../Assets/Styles/bottomComp.css'
 import getProminantColour from "../../GetAndSet/get/getProminantColour";
-import processImage from "../../Assets/image-processing/normaliseRGBValues";
-
+import processImageNormalise from "../../Assets/image-processing/normaliseRGBValues";
+import processImage from "../../Assets/image-processing/processImage";
+import {sumHistogram} from "../../Assets/image-processing/colourPercentages";
 export default function UploadImage() {
 
     const navigate = useNavigate();
@@ -25,6 +26,8 @@ export default function UploadImage() {
     const [editableTxt, setEditableTxt] = useState('');
     const [noLocation, setNoLocation] = useState(false);
     const [normValues, setNormalizedValues] = useState(null);
+    const [histValues, setHistogramValues] = useState(null);
+    const [histBlock, setHistBlockValues] = useState(null);
 
     useEffect(()=>{
         setColourNames([]);
@@ -57,7 +60,10 @@ export default function UploadImage() {
             img.src = event.target.result;
             img.onload = () => {
                 const values = processImage(img);
-              setNormalizedValues(values);
+                setHistBlockValues(values);
+                setHistogramValues(sumHistogram(values));
+                const normValues = processImageNormalise(img);
+              setNormalizedValues(normValues);
             };
           };
           reader.readAsDataURL(file);
@@ -95,7 +101,6 @@ export default function UploadImage() {
 
     function routeCheckImageCoords(){
         // set image colours to local storage and add function to be able to go back in the image upload sequence
-
         const data = {
             image:imageObj,
             latLong:imageCoords,
@@ -104,6 +109,8 @@ export default function UploadImage() {
             dominantColor: dominantColourName === null? colourNames[0]:dominantColourName ,
             colourNames: colourNames,
             normalizedValues: normValues,
+            histogramValues:histValues,
+            histBlock: histBlock,
         };
         navigate('/verifyMap',{state:data});
     }

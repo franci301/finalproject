@@ -22,6 +22,7 @@ export default async function GetImageInformation(imageName, range){
                             location: data.coords.arrayValue.values,
                             colours: data.palette.arrayValue.values,
                             normValues: data.normValues,
+                            histBlock: data.histBlock,
                         },
                     })
                 }else{

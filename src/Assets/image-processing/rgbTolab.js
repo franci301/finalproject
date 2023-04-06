@@ -13,6 +13,7 @@ function rgbToXyz(r, g, b) {
 }
 
 function xyzToLab(x, y, z) {
+  // reference
   const toLab = (c) => (c > 0.008856 ? Math.pow(c, 1 / 3) : 7.787 * c + 16 / 116);
 
   x /= 0.95047;

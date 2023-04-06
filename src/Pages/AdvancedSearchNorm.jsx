@@ -5,7 +5,7 @@ import processImage from "../Assets/image-processing/normaliseRGBValues";
 import advancedSearch from "../GetAndSet/advancedSearch";
 import {useNavigate} from "react-router-dom";
 import {Slider} from "@mui/material";
-export default function AdvancedSearch(){
+export default function AdvancedSearchNorm(){
 
     const [rgbNorm, setRgbNorm] = useState(null);
     const [range, setValue] = useState(2);
@@ -20,6 +20,7 @@ export default function AdvancedSearch(){
             img.src = event.target.result;
             img.onload = async () => {
                 const norm = processImage(img);
+                console.log(norm)
                 setRgbNorm(norm);
                 const results = await advancedSearch(norm,range);
                 if(results.length !== 0){

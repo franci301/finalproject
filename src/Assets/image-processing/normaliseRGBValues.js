@@ -1,5 +1,5 @@
 
-export default function processImage(img){
+export default function processImageNormalise(img){
       const numBlocks = 3; // 3x3 grid for 9 equal-sized blocks
       const blockWidth = Math.floor(img.width / numBlocks);
       const blockHeight = Math.floor(img.height / numBlocks);

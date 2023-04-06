@@ -23,8 +23,10 @@ import PaletteInformation from "./PaletteInformation";
 import SearchPage from "./SearchPage";
 import SearchInformationPage from "./SearchInformationPage";
 import {Helmet} from "react-helmet";
-import AdvancedSearch from "./AdvancedSearch";
+import AdvancedSearchPage from "./AdvancedSearchPage";
 import AdvancedResults from "./AdvancedResults";
+import AdvancedSearchNorm from "./AdvancedSearchNorm";
+import GridSearch from "./GridSearch";
 
 function App() {
 
@@ -50,7 +52,9 @@ function App() {
           <Route path='/paletteInformation' element={<PaletteInformation/>}/>
           <Route path='/searchInformation' element={<SearchInformationPage/>}/>
           <Route path='/searchPage' element={<SearchPage/>}/>
-          <Route path='/advancedSearch' element={<AdvancedSearch/>}/>
+          <Route path='/advancedSearch' element={<AdvancedSearchPage/>}/>
+          <Route path='/advancedSearchNorm' element={<AdvancedSearchNorm/>}/>
+          <Route path='/advancedSearchGrid' element={<GridSearch/>}/>
           <Route path='/advancedResults' element={<AdvancedResults/>}/>
         </Routes>
         <ScrollToTop/>

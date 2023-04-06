@@ -21,6 +21,8 @@ export default function ShowMapPage() {
     const [dominantColour, setDominantColour] = useState('');
     const [colours, setColourNames] = useState([]);
     const [normValues, setNormValues] = useState(null);
+    const [histValues, setHistValues] = useState(null);
+    const [histBlock, setHistBlock] = useState(null);
 
     useEffect(() => {
         setImage(location.state.image);
@@ -34,6 +36,8 @@ export default function ShowMapPage() {
         setDominantColour(location.state.dominantColor);
         setColourNames(location.state.colourNames);
         setNormValues(location.state.normalizedValues);
+        setHistValues(location.state.histogramValues);
+        setHistBlock(location.state.histBlock);
     }, [location]);
 
     function showNoText() {
@@ -107,7 +111,7 @@ export default function ShowMapPage() {
             const result = await UploadImageToDatabase(folderName, imageName);
             if(result.status){
                 console.log(result.message);
-                const res = await UploadInformationToDatabase(imageName,imageCoords,colours,normValues);
+                const res = await UploadInformationToDatabase(imageName,imageCoords,colours,normValues,histValues,histBlock);
                 if(res.status){
                     console.log(res.message);
                     navigate('/profile');

@@ -23,6 +23,5 @@ TODAY'S TODOS:
 
 - [ ]  change files to typescript and change file names
 - [ ]  might have to add in a db wipe for submitting the application if I cant get the server to work
-
-
+- [ ]  playwright testing code
 based on time add in graphs showing how close a colour is to another one etc

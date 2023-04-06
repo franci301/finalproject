@@ -13,7 +13,6 @@ export default async function advancedSearch(baseValues,range) {
             if(imageInfo.status){
                 const normValues = imageInfo.payload.normValues.arrayValue.values;
                 const formattedValues = formatNormValues(normValues);
-                console.log(imageInfo)
                 const comparedValues = compareNormValues(baseValues,formattedValues);
                 if(comparedValues){
                     const serverImage = await GetSingleImageFromFolder(imageData.folderName,image);
