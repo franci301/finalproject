@@ -98,12 +98,12 @@
 .login-container .text {
     font-size: 1.2em;
     color: #333;
-    min-width: 4.5em;
+    min-width: 5em;
 }
 .register-container .text {
     font-size: 1.2em;
     color: #333;
-    min-width: 6em;
+    min-width: 6.5em;
 }
 
 .error-container{
