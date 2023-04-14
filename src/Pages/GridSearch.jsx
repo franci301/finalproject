@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import NavMain from '../Layouts/NavMain';
 import colourNamesExhaustive from "../Assets/image-processing/colourNamesExhaustive";
 import colourNamesInverted from "../Assets/image-processing/colourNamesInverted";
 import gridBasedSearch from "../Assets/image-processing/gridBasedSearch";
 import {useNavigate} from "react-router-dom";
+import {Slider} from "@mui/material";
+import getContrastTextColor from "../Assets/image-processing/getContrastTextColor";
+
 export default function GridSearch() {
 
   const navigate = useNavigate();
   const [selectedColor, setSelectedColor] = useState('');
   const [gridColors, setGridColors] = useState(Array(9).fill(''));
+  const [range, setValue] = useState(2);
+
 
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
@@ -20,37 +25,52 @@ export default function GridSearch() {
     setGridColors(newGridColors);
   };
 
-  const getContrastTextColor = (hexColor) => {
-    const r = parseInt(hexColor.substr(1, 2), 16);
-    const g = parseInt(hexColor.substr(3, 2), 16);
-    const b = parseInt(hexColor.substr(5, 2), 16);
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    return brightness > 128 ? 'black' : 'white';
-  };
 
-  async function handleSearch(){
-    let error = false;
-    let colours = [];
-    for(let grid of gridColors){
-      if(grid === ''){
-        error = true;
-        console.log('Please fill in the entire grid with some colours');
-      }else{
-        colours.push(colourNamesInverted[grid]);
+
+    async function handleSearch(){
+      let error = false;
+      let colours = [];
+      for(let grid of gridColors){
+        if(grid === ''){
+          error = true;
+          console.log('Please fill in the entire grid with some colours');
+        }else{
+          colours.push(colourNamesInverted[grid]);
+        }
+      }
+      if(!error){
+        const arr = await gridBasedSearch(colours,range);
+        console.log(arr);
+        if(arr.length > 0){
+          const result = groupByIndex(arr);
+          console.log(result);
+
+          navigate('/advancedResults',{
+            state:{
+              result1: result[0],
+              result2: result[1],
+              result3: result[2],
+            }
+          });
+        }
       }
     }
-    if(!error){
-      const arr = await gridBasedSearch(colours);
-      console.log(arr);
-      if(arr.length > 0){
-        navigate('/advancedResults',{
-          state:{
-            results:arr,
-          }
-        });
+
+    function groupByIndex(arr) {
+      const groups = {};
+      for (const item of arr) {
+        if (!groups[item.index]) {
+          groups[item.index] = [];
+        }
+        groups[item.index].push(item);
       }
+    return Object.values(groups).sort((a, b) => a[0].index - b[0].index);
     }
-  }
+     const handleChange = ( event,newValue) => {
+        setValue(newValue);
+      };
+
+
   return (
     <>
       <NavMain />
@@ -87,6 +107,21 @@ export default function GridSearch() {
             ></div>
           ))}
         </div>
+        <div className={'d-flex flex-column p-4'}>
+                <p>Search radius (km):</p>
+                <br/>
+                <Slider
+                  aria-label="Temperature"
+                  defaultValue={2}
+                  valueLabelDisplay="on"
+                  onChange={handleChange}
+                  step={2}
+                  marks
+                  min={2}
+                  max={14}
+                  getAriaValueText={value => `${value} km`}
+                />
+            </div>
         <button onClick={handleSearch}>Search</button>
       </div>
     </>

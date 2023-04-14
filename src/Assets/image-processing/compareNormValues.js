@@ -16,7 +16,6 @@ export default function compareRGBArrays(arr1, arr2, similarityThreshold = 10, m
       similarBlocks++;
     }
   }
-  console.log(similarBlocks);
 
   return similarBlocks >= minSimilarBlocks;
 }

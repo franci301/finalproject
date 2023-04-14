@@ -14,6 +14,9 @@ export default function AdvancedSearchPage(){
                 <button onClick={()=> navigate('/advancedSearchGrid')}>
                     Grid Search
                 </button>
+                <button onClick={()=> navigate('/percentageSearch')}>
+                    Percentage Search
+                </button>
             </div>
         </>
     )

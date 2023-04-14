@@ -5,7 +5,7 @@ export default function createColorHistogram(imageData) {
     const nearest = nearestColor.from(colourNamesExhaustive)
 
     const data = imageData.data;
-    const histogram = new Map([['total-size', data.length]]);
+    const histogram = new Map([]);
 
 
     for (let i = 0; i < data.length; i += 4) {
@@ -14,9 +14,9 @@ export default function createColorHistogram(imageData) {
         const b = data[i + 2];
         const nearestColor = nearest({ r, g, b });
         if (histogram.has(nearestColor.name)) {
-            histogram.set(nearestColor.name,histogram.get(nearestColor.name)+1)
+            histogram.set(nearestColor.name,histogram.get(nearestColor.name)+1);
         } else {
-            histogram.set(nearestColor.name,1)
+            histogram.set(nearestColor.name,1);
         }
     }
     const keys = histogram.keys()
@@ -25,5 +25,11 @@ export default function createColorHistogram(imageData) {
             histogram.delete(colour)
         }
     }
+    const newKeys = histogram.keys();
+    let total = 0;
+    for(let colour of newKeys){
+        total += histogram.get(colour);
+    }
+    histogram.set('total-size',total);
     return histogram;
 }

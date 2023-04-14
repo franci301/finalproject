@@ -18,14 +18,12 @@ export default function compareHistValues(baseValues, blockValues) {
         const color2 = Object.keys(color2Object).find(key => color2Object[key].integerValue > 0);
 
         if (color1 === color2) {
-            comparisonResults.push({ index: i, message: `Both grids have the same color '${color1}' at index ${i}.` });
+            comparisonResults.push({ index: 1, message: `Both grids have the same color '${color1}' at index ${i}.`});
         } else if (Object.keys(color2Object).some(key => color1Category.includes(key))) {
-            comparisonResults.push({ index: i, message: `A color from the same category as '${color1}' exists in both grids, but not at the same index.` });
+            comparisonResults.push({ index: 2, message: `A color from the same category as '${color1}' exists in both grids, but not necessarily at the same index.`});
         } else if (Object.keys(color2Object).includes(color1)) {
-            comparisonResults.push({ index: i, message: `The color '${color1}' exists in both grids, but not at the same index.` });
+            comparisonResults.push({ index: 3, message: `The color '${color1}' exists in both grids, but not at the same index.`});
         }
     }
-
-    console.log(comparisonResults);
     return comparisonResults;
 }

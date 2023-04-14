@@ -20,13 +20,12 @@ export default function AdvancedSearchNorm(){
             img.src = event.target.result;
             img.onload = async () => {
                 const norm = processImage(img);
-                console.log(norm)
                 setRgbNorm(norm);
                 const results = await advancedSearch(norm,range);
                 if(results.length !== 0){
                     navigate('/advancedResults',{
                     state:{
-                        results:results
+                        result:results
                     }
                     });
                 }else{

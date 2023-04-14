@@ -11,6 +11,7 @@ import getProminantColour from "../../GetAndSet/get/getProminantColour";
 import processImageNormalise from "../../Assets/image-processing/normaliseRGBValues";
 import processImage from "../../Assets/image-processing/processImage";
 import {sumHistogram} from "../../Assets/image-processing/colourPercentages";
+import removeTotalSize from "../../Assets/image-processing/removeTotalSize";
 export default function UploadImage() {
 
     const navigate = useNavigate();
@@ -59,9 +60,10 @@ export default function UploadImage() {
             const img = new Image();
             img.src = event.target.result;
             img.onload = () => {
-                const values = processImage(img);
-                setHistBlockValues(values);
+                let values = processImage(img);
                 setHistogramValues(sumHistogram(values));
+                values = removeTotalSize(values);
+                setHistBlockValues(values);
                 const normValues = processImageNormalise(img);
               setNormalizedValues(normValues);
             };

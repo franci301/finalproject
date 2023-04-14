@@ -11,12 +11,14 @@ TODAY'S TODOS:
 - [ ]  test on android too
 - [ ]  remove option to take photo directly within the app
 - [ ]  make map page taller when submitted photo
-
+- [ ]  add text for when colours are in image but not in right locations
+- [ ] % search by colour
+- [ ] desktop view for submissions
 
 - [ ]  might have to implement the following workflow --> user opens first time, we get all of the images near them
 --> save the images or something to local storage to access later?
 --> could add to the database the list of current folder names so could make it faster for fetching?
-
+- [ ]  documentation
 - [ ]  might have to add the nearby images to the db and then add a refresh location button somewhere
 - [ ]  option for map view is to load only the locations of the images and when clicking on the location you get the image and i perform a fetch for the image
 

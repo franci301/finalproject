@@ -3,8 +3,8 @@ import GetImageInformation from "../../GetAndSet/get/getImageInformation";
 import compareHistValues from "./compareHistValues";
 import GetSingleImageFromFolder from "../../GetAndSet/get/getSingleImageFromFolder";
 
-export default async function gridBasedSearch(colours, range=2){
-    console.log(colours)
+export default async function gridBasedSearch(colours, range){
+
     const allImages = await getAllFirebaseImages();
     let arr = [];
     for(let imageData of allImages.payload.message) {
@@ -16,15 +16,26 @@ export default async function gridBasedSearch(colours, range=2){
                 if(comparedValues.length > 0){
                     const serverImage = await GetSingleImageFromFolder(imageData.folderName,image);
                     if(serverImage.status){
+                        const highest = findMostFrequentIndex(comparedValues);
                         arr.push({
-                            image:serverImage.image,
-                            imageInfo:imageInfo,
+                            image: serverImage.image,
+                            imageInfo: imageInfo,
                             folderName: imageData.folderName,
-                        })
+                            index: highest-1,
+                        });
                     }
                 }
             }
         }
     }
     return arr;
+}
+
+function findMostFrequentIndex(data) {
+  const counts = data.reduce((acc, item) => {
+    acc[item.index] = (acc[item.index] || 0) + 1;
+    return acc;
+  }, {});
+
+  return Object.entries(counts).reduce((a, b) => (a[1] > b[1] ? a : b))[0];
 }
