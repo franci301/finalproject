@@ -1,6 +1,6 @@
 import searchShortcut from "../Assets/image-processing/searchShortcut";
 import GetAllImagesInFolder from "./get/getAllImagesInFolder";
-import GetImagesFromFolder from "./get/getImagesFromFolder";
+import GetImagesFromServer from "./get/getImagesFromServer";
 import GetImageInformation from "./get/getImageInformation";
 /**
  * *
@@ -51,7 +51,7 @@ export default async function lazySearch(value,range) {
 
     // get all the images from the server
     for(let folderName of folderKeys){
-        const result = await GetImagesFromFolder(folderName,imagesMap.get(folderName))
+        const result = await GetImagesFromServer(folderName,imagesMap.get(folderName))
         allImages.push(result.images);
     }
 

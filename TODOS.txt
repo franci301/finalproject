@@ -6,6 +6,7 @@ GENERAL TODOS:
 - [ ]  can use vs code copilot/ chatgpt to make tests
 - [ ]  clicking on a map image gives popup/page with relevant colour tags and ratings
 - [ ]  map center should change based on proximity decided on by the user
+- [ ]  show images on map for all types of searches
 
 TODAY'S TODOS:
 - [ ]  test on android too

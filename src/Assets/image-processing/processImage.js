@@ -26,5 +26,5 @@ export default function processImage(img) {
       colorHistograms.push(histogram);
     }
   }
-    return colorHistograms;
+  return colorHistograms;
 }

@@ -2,7 +2,7 @@
  * @param {string} folderName - folder
  * @param {number} imageName - image
  */
-export default async function GetImagesFromFolder(folderName,imageName){
+export default async function GetImagesFromServer(folderName, imageName){
     let imagesArr = [];
     try{
         for(let path of imageName){

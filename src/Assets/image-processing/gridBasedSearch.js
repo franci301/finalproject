@@ -1,7 +1,7 @@
 import getAllFirebaseImages from "../../GetAndSet/get/getAllFirebaseImages";
 import GetImageInformation from "../../GetAndSet/get/getImageInformation";
 import compareHistValues from "./compareHistValues";
-import GetSingleImageFromFolder from "../../GetAndSet/get/getSingleImageFromFolder";
+import GetSingleImageFromServer from "../../GetAndSet/get/getSingleImageFromServer";
 
 export default async function gridBasedSearch(colours, range){
 
@@ -14,7 +14,7 @@ export default async function gridBasedSearch(colours, range){
                 const blocks = imageInfo.payload.histBlock.arrayValue.values;
                 const comparedValues = compareHistValues(colours, blocks);
                 if(comparedValues.length > 0){
-                    const serverImage = await GetSingleImageFromFolder(imageData.folderName,image);
+                    const serverImage = await GetSingleImageFromServer(imageData.folderName,image);
                     if(serverImage.status){
                         const highest = findMostFrequentIndex(comparedValues);
                         arr.push({

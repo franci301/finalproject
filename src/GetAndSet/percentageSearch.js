@@ -1,7 +1,7 @@
 import getAllFirebaseImages from "./get/getAllFirebaseImages";
 import GetImageInformation from "./get/getImageInformation";
 import calculateAndComparePercentages from "../Assets/image-processing/calculateAndComparePercentages";
-import GetSingleImageFromFolder from "./get/getSingleImageFromFolder";
+import GetSingleImageFromServer from "./get/getSingleImageFromServer";
 
 export default async function percentageSearch(values, range){
     const allImages = await getAllFirebaseImages();
@@ -14,7 +14,7 @@ export default async function percentageSearch(values, range){
                 const percentages = calculateAndComparePercentages(values,imageValues);
                 console.log(percentages);
                 if(percentages.size > 0){
-                    const serverImage = await GetSingleImageFromFolder(imageData.folderName,image);
+                    const serverImage = await GetSingleImageFromServer(imageData.folderName,image);
                     if(serverImage.status){
                         arr.push({
                             image:serverImage.image,

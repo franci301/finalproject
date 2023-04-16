@@ -11,9 +11,11 @@ export default function AdvancedSearchPage(){
                 <button onClick={()=> navigate('/advancedSearchNorm')}>
                     Advanced Search
                 </button>
+                <br/>
                 <button onClick={()=> navigate('/advancedSearchGrid')}>
                     Grid Search
                 </button>
+                <br/>
                 <button onClick={()=> navigate('/percentageSearch')}>
                     Percentage Search
                 </button>

@@ -2,7 +2,7 @@ import {db} from '../../firebase/_firebase-config';
 import {collection,getDocs} from "firebase/firestore";
 import GetAllImagesInFolder from "./getAllImagesInFolder";
 import GetImageInformation from "./getImageInformation";
-import GetSingleImageFromFolder from "./getSingleImageFromFolder";
+import GetSingleImageFromServer from "./getSingleImageFromServer";
 
 export default async function getAllImagesNearMe(){
     return new Promise(async (resolve, reject) => {
@@ -52,7 +52,7 @@ export default async function getAllImagesNearMe(){
         let temp = [];
         for (let key of validKeys) {
           for (let image of validImages.get(key)) {
-            let imageReference = await GetSingleImageFromFolder(key, image.image);
+            let imageReference = await GetSingleImageFromServer(key, image.image);
             if (imageReference.status) {
               image.image = imageReference.image;
               temp.push({
