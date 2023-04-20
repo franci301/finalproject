@@ -8,23 +8,37 @@ import GetSingleImageFromServer from "./get/getSingleImageFromServer";
  */
 
 export default async function basicSearch(value,range){
-    const result = await GetAllImagesInFolder(value);
     let arr = [];
-    for(let imageData of result.payload.message){
-        const imageInfo = await GetImageInformation(imageData.stringValue, range);
-        if(imageInfo.status){
-            const imageValue = await GetSingleImageFromServer(value, imageData.stringValue);
-            if(imageValue.status){
-                let data = {
-                    folderName : value,
-                    image : {
-                        data :imageInfo.payload,
-                        image : imageValue.image,
-                    },
+    // fetch all images inside the folder specified by the user
+    const result = await GetAllImagesInFolder(value);
+    if(result.status){
+        for(let imageData of result.payload.message){
+            // get information about the image
+            const imageInfo = await GetImageInformation(imageData.stringValue, range);
+            if(imageInfo.status){
+                // fetch the image from the server
+                const imageValue = await GetSingleImageFromServer(value, imageData.stringValue);
+                if(imageValue.status){
+                    let data = {
+                        folderName : value,
+                        image : {
+                            data :imageInfo.payload,
+                            image : imageValue.image,
+                        },
+                    }
+                    arr.push(data);
                 }
-                arr.push(data);
             }
         }
+    }else{
+        return {
+            status : false,
+            message: result.payload.message,
+        }
     }
-    return arr;
+
+    return {
+        status:true,
+        message: arr,
+    };
 }

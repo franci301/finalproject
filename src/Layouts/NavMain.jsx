@@ -16,6 +16,7 @@ function NavMain() {
     setLogin(loginToken);
   }, [])
 
+  // logout user
   async function handleLogout() {
     const auth = getAuth();
     await signOut(auth).then(() => {
@@ -27,18 +28,16 @@ function NavMain() {
     });
   }
 
-  
 
-  
   return (
     <Navbar id='navbar-container' expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <div className='d-flex flex-row m-auto align-content-center'>
-          <Navbar.Brand href="/*">Application Name</Navbar.Brand>
+          <Navbar.Brand href="/*">Reverie</Navbar.Brand>
           <div className='py-2' id='nav-login-text'>
             {login === true ?
-              <Nav.Link href="/profile" className=''>Profile Picture</Nav.Link> :
+              <Nav.Link href="/profile" className=''>Profile</Nav.Link> :
               <Nav.Link href="/login">Login</Nav.Link>
             }
           </div>
@@ -50,8 +49,10 @@ function NavMain() {
               <Nav.Link href='/'>Home</Nav.Link>
               <Nav.Link href='/searchPage'>Search</Nav.Link>
               <Nav.Link href='/advancedSearch'>Advanced Search</Nav.Link>
-              {login == true?
-                <Nav.Link href='/uploadImage'>Upload</Nav.Link>:null
+              {login === true?
+                <Nav.Link href='/uploadImage'>Upload</Nav.Link>
+                  :
+                  null
               }
               <Nav.Link href='/appInformation'>App Information</Nav.Link>
               {login === true ?

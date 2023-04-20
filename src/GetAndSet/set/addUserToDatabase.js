@@ -1,6 +1,7 @@
 import { db } from '../../firebase/_firebase-config';
 import {setDoc, doc, getDoc} from 'firebase/firestore';
 /**
+ * Function to add user details to the database
  * @param {string} email - User's email
  * @param {object} result - User's object
  */

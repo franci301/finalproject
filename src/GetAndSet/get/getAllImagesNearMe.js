@@ -24,7 +24,7 @@ export default async function getAllImagesNearMe(){
             }
         }
         allDocsArr = undefined;
-        // getting all of the valid image information
+        // getting all the valid image information
         // a valid image is one which is within a 2km range from the user
         let keys = allImagesObj.keys();
         let validImages = new Map();
@@ -52,6 +52,7 @@ export default async function getAllImagesNearMe(){
         let temp = [];
         for (let key of validKeys) {
           for (let image of validImages.get(key)) {
+            //   fetch the image from the server
             let imageReference = await GetSingleImageFromServer(key, image.image);
             if (imageReference.status) {
               image.image = imageReference.image;

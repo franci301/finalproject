@@ -6,12 +6,15 @@ import { doc, getDoc,updateDoc } from 'firebase/firestore';
 import { sendPasswordResetEmail } from 'firebase/auth';
 
 export default function EditProfile() {
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+
 
     useEffect(() => {
         auth.onAuthStateChanged((user)=>{
             if(user){
+                // fetch user information
                 getUserInformation();
             }else{
                 console.log('Not Signed In');
@@ -19,6 +22,7 @@ export default function EditProfile() {
         })
     }, []);
 
+    // function to get the user information
     async function getUserInformation() {
         const user = auth.currentUser;
         if (user) {
@@ -36,6 +40,7 @@ export default function EditProfile() {
         }
     }
 
+    // funnction to update the user information
     async function updateInformation() {
         const user = auth.currentUser;
         if (user) {
@@ -52,6 +57,7 @@ export default function EditProfile() {
         }   
     }
 
+    // function to send a password reset email
     async function handleSendPasswordResetEmail() {
         await sendPasswordResetEmail(auth, email).then((result) => {
             window.alert('Password Reset Email Has Been Sent!')

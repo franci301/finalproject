@@ -1,6 +1,6 @@
 import {auth, db} from '../../firebase/_firebase-config';
 import {doc, getDoc, collection} from 'firebase/firestore';
-
+// function to fetch the image paths uploaded by a user to the database
 export default async function getUserImages(){
     return new Promise((resolve, reject)=>{
         const userImages = auth.onAuthStateChanged(function(user){

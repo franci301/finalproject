@@ -11,9 +11,6 @@ export default function AdvancedResults() {
 
   useEffect(() => {
     const data = location.state;
-    console.log(data.result);
-
-
     if(data.result){
       setBase(data.result);
     }else{
@@ -23,6 +20,8 @@ export default function AdvancedResults() {
     }
   }, [location.state]);
 
+
+
 return (
   <>
     <NavMain />
@@ -30,11 +29,13 @@ return (
       {result ? (
         <>
           {result.length > 0 ? (
+              <>{
             result.map((value, index) => (
               <div className="d-flex flex-row" key={index}>
                 <img src={value.image} alt="" className="p-2 w-50" />
               </div>
-            ))
+            ))}
+                </>
           ) : (
             <p>No images matching this grid have been found</p>
           )}
@@ -43,7 +44,7 @@ return (
           <>
               {group1 && group1.length > 0 && (
                 <>
-                  <h4>Both images contain the same colours and at the same locations</h4>
+                  <h4>The image and the grid contain the same colours and at the same locations</h4>
                   {group1.map((value, index) => (
                     <div className="d-flex flex-row" key={index}>
                       <img src={value.image} alt="" className="p-2 w-50" />

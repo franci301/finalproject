@@ -14,7 +14,6 @@ import EditProfile from "./EditProfile";
 import PopularPage from './PopularPage';
 import ScrollToTop from "../Components/ScrollToTop";
 import ViewIndividualImage from "../Components/ViewIndividualImage";
-import UploadPhotoPage from "./UploadPhotoPage";
 import UploadImage from "./imageUploadSequence/UploadImage";
 import ShowMapPage from './imageUploadSequence/showMapPage';
 import AppInformationPage from "./appInformationPage";
@@ -46,7 +45,6 @@ function App() {
           <Route path='/popularPage' element={<PopularPage/>}/>
           <Route path='/viewIndividualImage' element={<ViewIndividualImage/>}/>
           <Route path='/ViewOnMap' element={<ViewAllOnMap/>}/>
-          <Route path='/uploadPhoto' element={<UploadPhotoPage/>}/>
           <Route path='/uploadImage' element={<UploadImage/>}/>
           <Route path='/verifyMap' element={<ShowMapPage/>}/>
           <Route path='/appInformation' element={<AppInformationPage/>}/>

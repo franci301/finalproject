@@ -1,5 +1,12 @@
 const toRadians = (degree) => degree * (Math.PI / 180);
 
+/**
+ * @param {number} limit - range specified by the user
+ * @param {number} lat1 - latitude
+ * @param {number} lon1 - longitude
+ * @param {number} lat2 - latitude
+ * @param {number} lon2 - longitude
+ */
 export default function CalculateValidDistance (limit,lat1, lon1, lat2, lon2) {
   const R = 6371; // radius of the Earth in km
   const dLat = toRadians(lat2 - lat1);

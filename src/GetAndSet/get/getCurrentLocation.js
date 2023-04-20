@@ -1,5 +1,6 @@
 export default async function getCurrentLocation(){
     return new Promise((resolve, reject)=>{
+        // fetch user's current location
         navigator.geolocation.getCurrentPosition(function(position){
                 resolve({
                     status:true,

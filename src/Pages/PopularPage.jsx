@@ -4,6 +4,7 @@ import SingleImgMap from "../Components/SingleImgMap";
 import Stars from "../Components/Stars";
 import '../Assets/Styles/Homepage.css'
 
+// Function to display the most popular image, rating and its location
 export default function PopularPage(){
 
     const location = useLocation();

@@ -9,7 +9,7 @@ export default function AdvancedSearchPage(){
         <NavMain/>
             <div className={'d-flex flex-column p-4'}>
                 <button onClick={()=> navigate('/advancedSearchNorm')}>
-                    Advanced Search
+                    Compare Images Search
                 </button>
                 <br/>
                 <button onClick={()=> navigate('/advancedSearchGrid')}>

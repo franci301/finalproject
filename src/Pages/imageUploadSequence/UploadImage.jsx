@@ -196,7 +196,7 @@ export default function UploadImage() {
                    null
                         :
                         <div>
-                            <h5>Is the generate colour palette correct?</h5>
+                            <h5>Is the generated colour palette correct?</h5>
                             <div className={'d-flex flex-row justify-content-evenly'}>
                                 <>{imageCoords.state === 'resolved' && normValues !== null?
                                     <button onClick={routeCheckImageCoords}>Yes</button>

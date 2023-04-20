@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import NavMain from '../Layouts/NavMain';
 import percentageSearch from '../GetAndSet/percentageSearch';
 import { Slider } from '@mui/material';
@@ -8,16 +8,23 @@ import {useNavigate} from "react-router-dom";
 
 export default function PercentageSearch() {
 
+  // initialize useStates to keep track of variables
   const navigate = useNavigate();
   const [values, setValues] = useState({});
   const [range, setValue] = useState(2);
   const [colorInput, setColorInput] = useState('');
   const [percentageInput, setPercentageInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [setTotalPercentage, totalPercentage] = useState(0);
 
+  useEffect(()=>{
+        // calculating the total percentage
+        setTotalPercentage(Object.values(values).reduce((acc, val) => acc + val, 0));
+        
+  },[setTotalPercentage, values])
   async function handleSearch() {
+    // search by percentage call
     const result = await percentageSearch(values, range);
-    console.log(result);
     if(result.length > 0){
       navigate('/advancedResults',{
       state:{
@@ -27,10 +34,12 @@ export default function PercentageSearch() {
     }
   }
 
+  // update the useState as the slider is changed
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  // adding new values to the list and calcuclating the total percentage
   const handleAddValues = () => {
     if (colorInput && percentageInput) {
       const newPercentage = parseFloat(percentageInput);
@@ -47,13 +56,14 @@ export default function PercentageSearch() {
     }
   };
 
+  // removing values from the list
   const handleRemoveValue = (color) => {
     const newValues = { ...values };
     delete newValues[color];
     setValues(newValues);
   };
 
-  const totalPercentage = Object.values(values).reduce((acc, val) => acc + val, 0);
+
 
 
 

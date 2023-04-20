@@ -15,6 +15,7 @@ function Profile() {
 
 
     useEffect(()=>{
+       //  fetch user details from firebase
        getUserDetails().then((res)=>{
            const {name,email} = res;
            if(name){
@@ -22,9 +23,11 @@ function Profile() {
            }
            setEmail(email);
        })
+        // fetch all image paths uploaded by the user
         getUserImages().then((res)=>{
             const {status, payload} = res;
             if(status){
+                // fetch all images from these image paths
                 fetchAllImages(payload.message).then((res)=>{
                     if(res.status){
                         setImages(res.images);
@@ -41,13 +44,8 @@ function Profile() {
     },[])
 
 
-    function routeEdit(){
+    function routeToEditPage(){
         navigate('/editProfile');
-    }
-
-    function route(props){
-        const data = {props}
-        navigate('/viewIndividualImage', { state: data })
     }
 
     return (
@@ -62,7 +60,7 @@ function Profile() {
                         }
                         <h6>{email}</h6>
                     <div>
-                        <button onClick={routeEdit}>Edit Profile</button>
+                        <button onClick={routeToEditPage}>Edit Profile</button>
                     </div>
                     <div id={'profile-stats-container'} className={'d-flex flex-row justify-content-center'}>
                         <div>
@@ -81,7 +79,6 @@ function Profile() {
                             <></>
                         }
                     </div>
-
                 </div>
             </div>
         </div>

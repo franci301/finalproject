@@ -14,19 +14,19 @@ export default function GridSearch() {
   const [gridColors, setGridColors] = useState(Array(9).fill(''));
   const [range, setValue] = useState(2);
 
-
+  // function to change the colour of a block
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
   };
 
+  // function to replace a current grid index with a colour in the useState
   const handleCellClick = (index) => {
     const newGridColors = [...gridColors];
     newGridColors[index] = selectedColor;
     setGridColors(newGridColors);
   };
 
-
-
+    // function to search using the completed grid
     async function handleSearch(){
       let error = false;
       let colours = [];
@@ -39,6 +39,7 @@ export default function GridSearch() {
         }
       }
       if(!error){
+        // call to the grid search
         const arr = await gridBasedSearch(colours,range);
         console.log(arr);
         if(arr.length > 0){
@@ -56,6 +57,7 @@ export default function GridSearch() {
       }
     }
 
+    // Function to sort the output into 3 arrays according to their index variable
     function groupByIndex(arr) {
       const groups = {};
       for (const item of arr) {

@@ -3,7 +3,7 @@ import {useLocation} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import colourNamesExhaustive from "../Assets/image-processing/colourNamesExhaustive";
 
-
+// page to display information about a single image
 export default function ViewIndividualImage(){
 
     const location = useLocation();

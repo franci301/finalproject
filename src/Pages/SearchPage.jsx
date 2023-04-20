@@ -3,16 +3,17 @@ import {useState} from "react";
 import {History, Provider, Trigger} from "react-history-search";
 import {Slider} from "@mui/material";
 import SearchResultsPage from "./SerchResultsPage";
-import GetAllImagesInFolder from "../GetAndSet/get/getAllImagesInFolder";
-import GetImagesFromServer from "../GetAndSet/get/getImagesFromServer";
-import GetImageInformation from "../GetAndSet/get/getImageInformation";
 import lazySearch from "../GetAndSet/lazySearch";
 import '../Assets/Styles/topComponent.css';
 import 'react-history-search/dist/index.css';
 import basicSearch from "../GetAndSet/basicSearch";
 import checkValidLazySearch from "../GetAndSet/checkValidLazySearch";
 
+/**
+ * Page allows users to search for images based on colour names
+ */
 export default function SearchPage(){
+
 
     const [info, setInfo] = useState([]);
     const [range, setValue] = useState(2);
@@ -28,8 +29,11 @@ export default function SearchPage(){
         setInfo([]);
         setErr('');
 
+        // Reformat the user input to be lowercacse and replace any spaces between words with '-' to match database naming convention
         value = value.toLowerCase();
         value = value.replace(/\s(?=\S)/g, "-");
+
+        // verify if the user search is a lazy search
         const validLazy = checkValidLazySearch(value);
 
         if(validLazy){
@@ -37,8 +41,10 @@ export default function SearchPage(){
             setInfo(data)
         }else{
             const result = await basicSearch(value,range);
-            if(result.length > 0){
-                setInfo(result);
+            if(result.status){
+                setInfo(result.message);
+            }else{
+                setErr(result.message);
             }
         }
     }

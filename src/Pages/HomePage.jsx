@@ -2,13 +2,14 @@ import MiddleComp from '../Components/MiddleComp';
 import BottomComp from '../Components/BottomComp';
 import NavMain from '../Layouts/NavMain';
 import '../Assets/Styles/Homepage.css';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import getCurrentLocation from "../GetAndSet/get/getCurrentLocation";
+
+// Function to display the map and the most popular locations on the homepage
 function HomePage() {
 
-
     useEffect(()=>{
-
+        // fetch users location and save it to local storage
         handleUserLocation().then((res) =>{
             localStorage.setItem('user-location',res.payload.latitude + '/'+res.payload.longitude);
         })

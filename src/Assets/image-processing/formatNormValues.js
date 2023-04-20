@@ -1,3 +1,6 @@
+/**
+ * @param {string} values - list of normalized values from the database
+ */
 export default function formatNormValues(values){
     let arr = [];
     for(let value of values){

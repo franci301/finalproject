@@ -1,6 +1,7 @@
 import {auth,db } from '../../firebase/_firebase-config';
 import { doc, getDoc } from 'firebase/firestore';
 
+// function to fetch the user details from the database
 export default async function getUserDetails(){
     return new Promise((resolve, reject) => {
         const userInformation = auth.onAuthStateChanged(function(user) {

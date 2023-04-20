@@ -1,13 +1,19 @@
 import colorCategories from './searchShortcut'; // Import the color categories
 
+
+/**
+ * @param {number} baseValues - list of colours from the grid
+ * @param {number} blockValues - list of colours from the image
+ */
 export default function compareHistValues(baseValues, blockValues) {
 
 
     // Helper function to find the category of a color
-    const findCategory = (color) => {
+    function findCategory(color){
+        // loop through the colorCategories list and check if the children of each element in the list contain the colour we need to find.
         const categoryKey = Object.keys(colorCategories).find(key => colorCategories[key].includes(color));
         return colorCategories[categoryKey];
-    };
+    }
 
     const comparisonResults = [];
 
@@ -16,7 +22,6 @@ export default function compareHistValues(baseValues, blockValues) {
         const color1Category = findCategory(color1);
         const color2Object = blockValues[i].mapValue.fields;
         const color2 = Object.keys(color2Object).find(key => color2Object[key].integerValue > 0);
-
         if (color1 === color2) {
             comparisonResults.push({ index: 1, message: `Both grids have the same color '${color1}' at index ${i}.`});
         } else if (Object.keys(color2Object).some(key => color1Category.includes(key))) {

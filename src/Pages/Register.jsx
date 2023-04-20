@@ -11,6 +11,8 @@ import {collection, doc, getDoc} from "firebase/firestore";
 
 function Register() {
 
+    // initialise useStates to keep track of variables changing
+    // useNavigate is used to navigate to different pages whilst passing data to that page
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -64,7 +66,8 @@ function Register() {
                 const collectionRef = await collection(db, 'users');
                 const docRef = await doc(collectionRef, user.uid);
                 const res = await getDoc(docRef);
-                if (res.exists) {
+                // check if user is already registered, if they are return an error, if not, create their account
+                if (res._document !== null) {
                     setError('An account with this email already exists. Click the Login icon on the top right to login with Google')
                 }else{
                     // const credential = GoogleAuthProvider.credentialFromResult(result);

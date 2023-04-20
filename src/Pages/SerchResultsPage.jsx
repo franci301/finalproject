@@ -2,6 +2,10 @@ import { useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import '../Assets/Styles/topComponent.css';
 
+/**
+ * Function to display the search results
+ * @param {props} information - list of data
+ */
 export default function SearchResultsPage({information}){
 
     const navigate = useNavigate()
@@ -11,7 +15,7 @@ export default function SearchResultsPage({information}){
         setImages(information);
     },[information])
 
-    function routeMap(){
+    function routeToMapPage(){
         const data = {images:imagesArr};
         navigate('/ViewOnMap',{state:data});
     }
@@ -30,7 +34,7 @@ export default function SearchResultsPage({information}){
                   })
                 : null}
             </div>
-            <button onClick={routeMap}>View all on map</button>
+            <button onClick={routeToMapPage}>View all on map</button>
           </div>
         </>
     )

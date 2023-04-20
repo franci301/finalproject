@@ -14,6 +14,7 @@ function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    // Login with Google
     async function handleGoogleLogin() {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
@@ -34,6 +35,7 @@ function Login() {
                 setError(errorMessage);
             })
     }
+    // Login with email and password
 
     async function handleLogin() {
         if (email !== '' && password !== '') {
@@ -64,6 +66,7 @@ function Login() {
         }
     }
 
+    // send password reset email
     async function handleResetPassword() {
         if (email !== '') {
             await sendPasswordResetEmail(auth, email).then(() => {

@@ -12,6 +12,7 @@ export default function AppInformationPage(){
     function routePaletteInfo(){
         navigate('/paletteInformation')
     }
+
     return (
         <>
         <NavMain/>

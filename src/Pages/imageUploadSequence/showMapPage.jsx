@@ -24,6 +24,7 @@ export default function ShowMapPage() {
     const [histValues, setHistValues] = useState(null);
     const [histBlock, setHistBlock] = useState(null);
 
+    // load props passed from previous page
     useEffect(() => {
         setImage(location.state.image);
         setLatLong({
@@ -49,10 +50,12 @@ export default function ShowMapPage() {
      * @param {number} lat - latitude of image
      * @param {number} lng - longitude of image
      */
+    //   update the lat long for the image marker
     function handleMarkerDrag(lat, lng) {
         setLatLong({state: 'resolved', latitude: lat, longitude: lng});
     }
 
+    // api call to get the postcode latitude and longitude
     async function getPostCode() {
         setErrorText('');
         if(!(postcode.length === 0)){
@@ -73,6 +76,7 @@ export default function ShowMapPage() {
         }
     }
 
+    // upload an image to the server
     async function uploadImage(){
 
         const formData = new FormData();

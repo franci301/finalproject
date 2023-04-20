@@ -1,24 +1,12 @@
 import '../Assets/Styles/bottomComp.css'
 import Card from '../Components/Card'
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {auth} from '../firebase/_firebase-config';
-
+import image1 from '../Assets/Images/WhatsApp Image 2023-03-26 at 16.41.281.jpg';
+import image2 from '../Assets/Images/WhatsApp Image 2023-03-26 at 16.41.28.jpg';
 function BottomComp() {
-    const navigate = useNavigate();
-    const [loggedIn, setLoggedIn] = useState(false);
 
-    useEffect(()=>{
-        auth.onAuthStateChanged(function(user){
-            if(user) setLoggedIn(true);
-        })
-    },[])
 
-    let popularItems = [{name:'Location 1',rating:5, distance:'2km'},{name:'Location 2',rating:4,distance:'5km'}]
+    let popularItems = [{name:'Location 1',rating:5, distance:'2km', img:image1},{name:'Location 2',rating:4,distance:'5km', img:image2}]
 
-    function routeUploadImages(){
-        navigate('/uploadImage');
-    }
 
     return (
         <div className='d-flex flex-column align-items-center'>
@@ -26,7 +14,7 @@ function BottomComp() {
             <div className={'d-flex flex-row pb-5'}>
                 {popularItems.length !== 0 ?
                     popularItems.map((content, index) => (
-                        <Card name={content.name} rating={content.rating} distance={content.distance} key={index} latLon={[51.52194, -0.04990]}/>
+                        <Card name={content.name} rating={content.rating} distance={content.distance} key={index} latLon={[51.52194, -0.04990]} image={content.img}/>
                     ))
                     :
                     <>nope</>

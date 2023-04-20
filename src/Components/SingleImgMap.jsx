@@ -1,6 +1,5 @@
 import {useJsApiLoader, GoogleMap, MarkerF} from "@react-google-maps/api";
 import {useMemo} from 'react';
-import '../Assets/Images/duck.jpg'
 import '../Assets/Styles/MapStyle.css';
 
 export default function SingleImgMap({latLon,img,editable, onMarkerDrag}) {

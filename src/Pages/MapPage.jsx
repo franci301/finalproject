@@ -5,6 +5,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import getAllImagesNearMe from "../GetAndSet/get/getAllImagesNearMe";
 
 
+// function to display a map
 export default function  MapPage(){
     const {isLoaded} = useJsApiLoader({
         googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY
@@ -14,6 +15,7 @@ export default function  MapPage(){
         <Map />
     )
 }
+
 function Map(){
     const [mapCentre, setLocation] = useState({});
     const [images, setImages] = useState([]);
@@ -37,6 +39,7 @@ function Map(){
     }, [stateVars.state]);
 
     async function handleFetchAllImagesNearMe(){
+        // fetch all images in a 2km radius from the user
         return await getAllImagesNearMe();
     }
     const containerStyle = {
@@ -60,6 +63,7 @@ function Map(){
                 {images && images.length > 0 ?
                     images.map((value, index) => {
                         return (
+                            // create a marker which contains an image
                             <MarkerF key={index} position={{lat:value.image.data.location[0].doubleValue, lng:value.image.data.location[1].doubleValue}} icon={{
                               url: value.image.image,
                               scaledSize: new window.google.maps.Size(50, 50)

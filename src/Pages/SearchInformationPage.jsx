@@ -1,6 +1,8 @@
 import NavMain from "../Layouts/NavMain";
 import searchShortcut from "../Assets/image-processing/searchShortcut";
 import '../Assets/Styles/appInformation.css'
+
+// page showing the user how to search for images using the basic search functionality
 export default function SearchInformationPage(){
 
     return(
