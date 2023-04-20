@@ -3,13 +3,21 @@
 
 #profile-top img {
     width: 50%;
-    /*margin-left: 30%;*/
+    object-fit: cover;
+    /*margin:2px;*/
+
 }
 
 #edit-container {
     height: 100vh;
 }
 
+#profile-list-images img {
+    width: 170px; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+    object-fit: cover;
+    margin: 5px; /* Optional: Add a margin if you want some space between images */
+}
 
 /* Edit Profile Page */
 

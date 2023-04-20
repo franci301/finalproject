@@ -14,7 +14,7 @@ function BottomComp() {
             <div className={'d-flex flex-row pb-5'}>
                 {popularItems.length !== 0 ?
                     popularItems.map((content, index) => (
-                        <Card name={content.name} rating={content.rating} distance={content.distance} key={index} latLon={[51.52194, -0.04990]} image={content.img}/>
+                        <Card name={content.name} rating={content.rating} distance={content.distance} key={index} latLon={[51.52194, -0.04990]} image={content.img} index={index}/>
                     ))
                     :
                     <>nope</>

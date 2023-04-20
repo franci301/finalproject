@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import '../Assets/Styles/nav.css'
-//  if button is clicked, then the profile picture will be replaced with a dropdown menu
 
 
 function NavMain() {
@@ -33,7 +32,7 @@ function NavMain() {
     <Navbar id='navbar-container' expand="lg">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <div className='d-flex flex-row m-auto align-content-center'>
+        <div className='d-flex flex-row m-auto align-items-center'>
           <Navbar.Brand href="/*">Reverie</Navbar.Brand>
           <div className='py-2' id='nav-login-text'>
             {login === true ?
@@ -56,9 +55,8 @@ function NavMain() {
               }
               <Nav.Link href='/appInformation'>App Information</Nav.Link>
               {login === true ?
-                <div className='parentLogin'>
-                  <li onClick={handleLogout}>Logout</li>
-                </div>:null
+                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                  :null
               }
             </Nav>
           </div>
