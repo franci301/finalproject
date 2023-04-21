@@ -134,7 +134,7 @@ export default function ShowMapPage() {
     return (
         <>
             <NavMain/>
-            <div className={'px-4'}>
+            <div className={'px-4 py-3'}>
                 {imageCoords.state === "resolved" && (
                     <div id='single-map-container'>
                         <SingleImgMap latLon={[imageCoords.latitude, imageCoords.longitude]} img={imageObj}

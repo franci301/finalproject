@@ -35,7 +35,7 @@ export default function processImageNormalise(img){
             g += data[i + 1];
             b += data[i + 2];
           }
-          // divide by the number of pixels to
+          // divide by the number of pixels
           const numPixels = data.length / 4;
           r /= numPixels;
           g /= numPixels;
