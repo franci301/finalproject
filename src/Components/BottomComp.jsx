@@ -1,7 +1,7 @@
 import '../Assets/Styles/bottomComp.css'
 import Card from '../Components/Card'
-import image1 from '../Assets/Images/WhatsApp Image 2023-03-26 at 16.41.281.jpg';
-import image2 from '../Assets/Images/WhatsApp Image 2023-03-26 at 16.41.28.jpg';
+import image1 from '../Assets/Images/popular1.jpeg';
+import image2 from '../Assets/Images/popular2.jpeg';
 function BottomComp() {
 
 

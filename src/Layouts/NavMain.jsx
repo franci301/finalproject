@@ -48,6 +48,7 @@ function NavMain() {
               <Nav.Link href='/'>Home</Nav.Link>
               <Nav.Link href='/searchPage'>Search</Nav.Link>
               <Nav.Link href='/advancedSearch'>Advanced Search</Nav.Link>
+              <Nav.Link href='/freeBrowse'>Browse The Map</Nav.Link>
               {login === true?
                 <Nav.Link href='/uploadImage'>Upload</Nav.Link>
                   :

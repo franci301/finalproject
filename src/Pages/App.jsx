@@ -27,6 +27,7 @@ import AdvancedResults from "./AdvancedResults";
 import AdvancedSearchNorm from "./AdvancedSearchNorm";
 import GridSearch from "./GridSearch";
 import PercentageSearch from "./PercentageSearch";
+import FreeBrowsePage from "./FreeBrowsePage";
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route path='/advancedSearchGrid' element={<GridSearch/>}/>
           <Route path='/advancedResults' element={<AdvancedResults/>}/>
           <Route path='/percentageSearch' element={<PercentageSearch/>}/>
+          <Route path='/freeBrowse' element={<FreeBrowsePage/>}/>
         </Routes>
         <ScrollToTop/>
       </Router>

@@ -14,7 +14,12 @@ export default async function GetImageInformation(imageName, range){
             if (res) {
                 const data = res._document.data.value.mapValue.fields;
                 //  check if coords are within user distance
-                const valid = CalculateValidDistance(range,data.coords.arrayValue.values[0].doubleValue,data.coords.arrayValue.values[1].doubleValue,51.5218501,-0.0390126);
+                let valid = true;
+                if(range !== -1){
+                    let position = localStorage.getItem('user-location');
+                    position = position.split('/');
+                    valid = CalculateValidDistance(range,data.coords.arrayValue.values[0].doubleValue,data.coords.arrayValue.values[1].doubleValue,parseFloat(position[0]),parseFloat(position[1]));
+                }
                 if(valid){
                     resolve({
                         status: true,
