@@ -5,17 +5,20 @@ import processImage from "../Assets/image-processing/normaliseRGBValues";
 import advancedSearch from "../GetAndSet/advancedSearch";
 import {useNavigate} from "react-router-dom";
 import {Slider} from "@mui/material";
+import '../Assets/Styles/seraches.css';
 
 export default function AdvancedSearchNorm(){
 
     const [rgbNorm, setRgbNorm] = useState(null);
     const [range, setValue] = useState(2);
+    const [image, setImageURl] = useState(null);
     const navigate = useNavigate();
 
      // function to handle the user uploading an image to the system
      const handleDrop = (e) => {
         const file = e[0];
-        if (file) {
+         setImageURl(URL.createObjectURL(file));
+         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
             const img = new Image();
@@ -60,8 +63,18 @@ export default function AdvancedSearchNorm(){
                         </div>
                     )}
                 </Dropzone>
+
             </div>
             <div className={'d-flex flex-column p-4'}>
+                {image && image !== null?
+                    <div id={'compare-images-div'} className={'d-flex flex-column align-items-center'}>
+                        <h5>Your uploaded image:</h5>
+                        <br/>
+                        <img src={image} alt="User Uploaded Image"/>
+                    </div>:
+                    null
+                }
+                <br/>
                 <p>Search radius (km):</p>
                 <br/>
                 <Slider
@@ -75,7 +88,9 @@ export default function AdvancedSearchNorm(){
                   max={14}
                   getAriaValueText={value => `${value} km`}
                 />
+
             </div>
+
         </>
     )
 }

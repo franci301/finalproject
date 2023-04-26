@@ -32,6 +32,11 @@ function xyzToLab(x, y, z) {
 }
 
 export default function rgbToLab(r, g, b) {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
   const { x, y, z } = rgbToXyz(r, g, b);
   return xyzToLab(x, y, z);
 }
+

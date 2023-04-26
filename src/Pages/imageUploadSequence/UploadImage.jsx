@@ -71,15 +71,13 @@ export default function UploadImage() {
           reader.readAsDataURL(file);
         }
         // Dominant colour palette
-        const nearest = nearestColor.from(colourHex);
-
+        const nearest = nearestColor.from(colourHex)
         getProminantColour(imageObject.src).then((res)=>{
             if(res){
                 setHex(res);
                 const dominantColourName = nearest(res).name;
                 setDominantColourName(dominantColourName);
             }
-
         }).catch((err)=>{
             console.log(err);
         })
@@ -143,7 +141,7 @@ export default function UploadImage() {
                     <Palette src={imageURL} crossOrigin="anonymous" format="hex" colorCount={8}>
                         {({ data, loading }) => {
                             if (loading) return <>Loading</>;
-                            setColors(data);
+                            if(data !== undefined) setColors(data);
                             return (
                                 <div>
                                     Palette:

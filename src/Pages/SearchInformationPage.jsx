@@ -10,9 +10,11 @@ export default function SearchInformationPage(){
             <NavMain/>
             <div className={'d-flex flex-column p-4'}>
                 <br/>
-                <h4>List of shortcut searchable keywords:</h4>
+                <h4>Shortcut queries:</h4>
+                <br/>
                 <p>Please do not include the '/' when searching.</p>
                 <p>Use either word but not both</p>
+                <br/>
                 <div className='information-container'>
                     <ul>
                         {Object.keys(searchShortcut).map((colour)=>{
@@ -20,6 +22,21 @@ export default function SearchInformationPage(){
                                <li key={colour}>{colour}</li>
                            )
                         })}
+                    </ul>
+                </div>
+                <br/>
+                <h4>Sample Queries</h4>
+                <div className='information-container'>
+                    <ul>
+                        <li>
+                            sky blue
+                        </li>
+                        <li>
+                            blue
+                        </li>
+                        <li>
+                            red
+                        </li>
                     </ul>
                 </div>
             </div>

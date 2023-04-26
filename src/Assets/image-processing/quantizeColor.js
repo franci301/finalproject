@@ -1,4 +1,3 @@
-// Define a function to quantize a color based on the specified grid size
 export default function quantizeColor(r, g, b, gridSize) {
   // Calculate the quantized red component by dividing the original value by the grid size, rounding down,
   // multiplying by the grid size, and adding half the grid size

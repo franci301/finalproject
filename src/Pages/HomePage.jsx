@@ -23,7 +23,6 @@ function HomePage() {
     }
 
 
-
     return (
         <div className='text-secondary d-flex flex-column justify-content-between' >
             <NavMain />
