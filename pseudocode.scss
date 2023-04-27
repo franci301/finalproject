@@ -1,0 +1,40 @@
+
+FUNCTION compareRGBArrays(arr1, arr2, similarityThreshold = 0.7, minSimilarBlocks = 4)
+    SET similarBlocks TO 0
+    SET similarityScoreSum TO 0
+    SET numberOfBlocks TO 9 // number of blocks, always 9
+
+    FOR i in range numberOfBlocks
+        // Convert RGB values to LAB
+        color1 <- convertRGBtoLAB()
+        color2 <- convertRGBtoLAB()
+
+        // Calculate Euclidean distance for two colors
+        distance <- calculateEuclideanDistance()
+        normalizedDistance <- MIN(distance / 100, 1)
+
+        // Update similarity score sum
+        similarityScoreSum <- similarityScoreSum + (1 - normalizedDistance)
+    END FOR
+
+    // Calculate average similarity score
+    avgSimilarityScore <- similarityScoreSum / numberOfBlocks
+
+    // Update similarBlocks if average similarity score is above threshold
+    IF avgSimilarityScore >= similarityThreshold
+        similarBlocks <- ROUND(avgSimilarityScore * numberOfBlocks)
+    END IF
+
+    // Return whether similar blocks are above the minimum required
+    RETURN similarBlocks >= minSimilarBlocks
+END FUNCTION
+
+
+FUNCTION findCategory(color)
+    // Loop through the colorCategories keys and check if the children of each key contain the color to find
+    FOR key IN keys of colorCategories
+        IF colorCategories[key] contains color
+            RETURN colorCategories[key]
+        END IF
+    END FOR
+END FUNCTION
