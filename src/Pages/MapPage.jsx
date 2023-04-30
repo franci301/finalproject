@@ -5,8 +5,12 @@ import {useLocation, useNavigate} from "react-router-dom";
 import getAllImagesNearMe from "../GetAndSet/get/getAllImagesNearMe";
 
 
-// function to display a map
+
+/**
+ * Function to display a map
+ */
 export default function  MapPage(){
+    // load api key from env
     const {isLoaded} = useJsApiLoader({
         googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     });
@@ -18,18 +22,19 @@ export default function  MapPage(){
 
 function Map(){
     const [mapCentre, setLocation] = useState({});
-    const [images, setImages] = useState([]);
-    const [localImages, setLocalImages] = useState([]);
+    const [images, setImages] = useState([]); // images from a search result
+    const [localImages, setLocalImages] = useState([]); // images near the user
     const stateVars = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
+        // fetch user location from local storage
         let position = localStorage.getItem('user-location');
         position = position.split('/');
         setLocation({lat: parseFloat(position[0]), lng: parseFloat(position[1])});
         if (stateVars.state) {
             setImages(stateVars.state.images);
-        }else if(['http://localhost:3000/*','http://localhost:3000/','https://finalproject-76a75.web.app/*','https://finalproject-76a75.web.app/'].includes(window.location.href)){
+        }else if(['http://localhost:3000/*','http://localhost:3000/','https://finalproject-76a75.web.app/*','https://finalproject-76a75.web.app/'].includes(window.location.href)){ // if we are on a homepage, fetch all images near me
             handleFetchAllImagesNearMe().then((res)=>{
                 setLocalImages(res);
             }).catch((err) =>{

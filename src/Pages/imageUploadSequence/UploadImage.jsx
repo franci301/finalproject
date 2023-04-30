@@ -12,6 +12,10 @@ import processImageNormalise from "../../Assets/image-processing/normaliseRGBVal
 import processImage from "../../Assets/image-processing/processImage";
 import {sumHistogram} from "../../Assets/image-processing/colourPercentages";
 import removeTotalSize from "../../Assets/image-processing/removeTotalSize";
+
+/**
+ *  Function to handle uploading an image
+ */
 export default function UploadImage() {
 
     const navigate = useNavigate();
@@ -34,7 +38,7 @@ export default function UploadImage() {
         setColourNames([]);
         const nearest = nearestColor.from(colourHex);
         for(let hex of imageColors){
-            const closestColor = nearest(hex);
+            const closestColor = nearest(hex); // calculate the nearest colour from the given hex value and list
             setColourNames(prevColourNames => [...prevColourNames, closestColor.name]);
         }
     },[imageColors,imageURL])
@@ -50,9 +54,8 @@ export default function UploadImage() {
         // image url for extracting colour palette
         setImageURL(URL.createObjectURL(acceptedFiles[0]));
         setImageCoords({ state: "loading" });
-        // image __ for backend
+        // image for backend
         setImageFornest(acceptedFiles[0]);
-        // get normalized values
         const file = acceptedFiles[0];
         if (file) {
           const reader = new FileReader();
@@ -60,11 +63,11 @@ export default function UploadImage() {
             const img = new Image();
             img.src = event.target.result;
             img.onload = () => {
-                let values = processImage(img);
+                let values = processImage(img); // create histogram
                 setHistogramValues(sumHistogram(values));
                 values = removeTotalSize(values);
                 setHistBlockValues(values);
-                const normValues = processImageNormalise(img);
+                const normValues = processImageNormalise(img); // normalise an image
               setNormalizedValues(normValues);
             };
           };
@@ -72,6 +75,7 @@ export default function UploadImage() {
         }
         // Dominant colour palette
         const nearest = nearestColor.from(colourHex)
+        // find the prominent colour from the image
         getProminantColour(imageObject.src).then((res)=>{
             if(res){
                 setHex(res);
@@ -83,11 +87,11 @@ export default function UploadImage() {
         })
 
         try {
-            const { latitude, longitude } = await getLatLong(acceptedFiles[0]);
+            const { latitude, longitude } = await getLatLong(acceptedFiles[0]); // get location of photo
             setImageCoords({ state: "resolved", latitude, longitude });
         } catch (error) {
             setNoLocation(true);
-            let position = localStorage.getItem('user-location');
+            let position = localStorage.getItem('user-location'); // if no location exists, set the user location as the image location
             position = position.split('/');
             setImageCoords({ state: "resolved", latitude:parseFloat(position[0]),longitude:parseFloat(position[1]) })
         }
@@ -100,7 +104,6 @@ export default function UploadImage() {
 
 
     function routeCheckImageCoords(){
-        // set image colours to local storage and add function to be able to go back in the image upload sequence
         const data = {
             image:imageObj,
             latLong:imageCoords,

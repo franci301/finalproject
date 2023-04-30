@@ -6,6 +6,9 @@ import colorList from '../Assets/image-processing/colourNamesExhaustive';
 import getContrastTextColor from "../Assets/image-processing/getContrastTextColor";
 import {useNavigate} from "react-router-dom";
 
+/**
+ * Page handling the percentage search option
+ */
 export default function PercentageSearch() {
 
   // initialize useStates to keep track of variables

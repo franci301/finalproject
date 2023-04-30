@@ -1,6 +1,10 @@
 import NavMain from "../Layouts/NavMain";
 import MapPage from "./MapPage";
 import '../Assets/Styles/middleComp.css';
+
+/**
+ * This function displays the map for the results page
+ */
 export default function ViewSearchMap(){
     return(
         <>

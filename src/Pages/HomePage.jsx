@@ -5,7 +5,9 @@ import '../Assets/Styles/Homepage.css';
 import {useEffect} from "react";
 import getCurrentLocation from "../GetAndSet/get/getCurrentLocation";
 
-// Function to display the map and the most popular locations on the homepage
+/**
+ *  Function to display the map and the most popular locations on the homepage
+ */
 function HomePage() {
 
     useEffect(()=>{
@@ -13,11 +15,8 @@ function HomePage() {
         handleUserLocation().then((res) =>{
             localStorage.setItem('user-location',res.payload.latitude + '/'+res.payload.longitude);
         })
+},[]);
 
-
-},[])
-
-    // get 2 most viewed location and save to state - server side where every day/week i get the two highest rated photos/locations
     async function handleUserLocation(){
        return await getCurrentLocation();
     }

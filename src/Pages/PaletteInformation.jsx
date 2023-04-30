@@ -1,7 +1,9 @@
 import NavMain from "../Layouts/NavMain";
 import colourNames from '../Assets/image-processing/colourNamesExhaustive';
 
-// function to display all the palette information on the application
+/**
+ * function to display all the palette information on the application
+ */
 export default function PaletteInformation() {
     const colorListContainerStyle = {
       display: "flex",

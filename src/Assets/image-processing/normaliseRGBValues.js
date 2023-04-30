@@ -1,5 +1,6 @@
 
 /**
+ * Function to normalise the colours inside an image
  * @param {blob} img - image uploaded by the user
  */
 export default function processImageNormalise(img){

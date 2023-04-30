@@ -1,5 +1,8 @@
 import createColorHistogram from "./createHistogram";
-
+/**
+ *  Function to create a colour histogram
+ *  @param {blob} img - image uploaded by the user
+ */
 export default function processImage(img) {
   const numBlocks = 3; // 3x3 grid for 9 equal-sized blocks
   const blockWidth = Math.floor(img.width / numBlocks);

@@ -9,6 +9,9 @@ import NavMain from '../Layouts/NavMain';
 import AddUserToDatabase from "../GetAndSet/set/addUserToDatabase";
 import {collection, doc, getDoc} from "firebase/firestore";
 
+/**
+ *  Function to display the register page
+ */
 function Register() {
 
     // initialise useStates to keep track of variables changing

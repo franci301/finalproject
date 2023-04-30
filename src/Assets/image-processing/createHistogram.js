@@ -11,7 +11,7 @@ export default function createColorHistogram(imageData) {
   const data = imageData.data;
   // Initialize the color histogram as an empty Map
   const histogram = new Map([]);
-  // Initialize nearest color finder with the exhaustive list of color names
+  // Initialize the nearest color finder with the exhaustive list of color names
   const nearest = nearestColor.from(colourNamesExhaustive);
   // Initialize a Map to store color buckets
   const bucketColorsMap = new Map();

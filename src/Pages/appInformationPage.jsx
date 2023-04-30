@@ -1,6 +1,9 @@
 import NavMain from "../Layouts/NavMain";
 import {useNavigate} from "react-router-dom";
 
+/**
+ *  Function to display the app information
+ */
 export default function AppInformationPage(){
 
     const navigate = useNavigate();

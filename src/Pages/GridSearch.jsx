@@ -7,6 +7,9 @@ import {useNavigate} from "react-router-dom";
 import {Slider} from "@mui/material";
 import getContrastTextColor from "../Assets/image-processing/getContrastTextColor";
 
+/**
+ *  Function to handle the grid serach
+ */
 export default function GridSearch() {
 
   const navigate = useNavigate();

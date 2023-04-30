@@ -4,7 +4,13 @@ import {useNavigate} from "react-router-dom";
 import '../Assets/Styles/MapStyle.css';
 import fetchImagesForBrowsing from "../GetAndSet/get/fetchImagesForBrowsing";
 
+
+/**
+ * Function displaying a map
+ * Differs from MapPage as this page handles all the images
+ */
 export default function MapPageComplete(){
+    // load the api key from env
        const {isLoaded} = useJsApiLoader({
         googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY
     });
@@ -21,9 +27,11 @@ function Map(){
     const navigate = useNavigate();
 
     useEffect(()=>{
+        // fetch user location from local storage
         let position = localStorage.getItem('user-location');
         position = position.split('/');
         setLocation({lat: parseFloat(position[0]), lng: parseFloat(position[1])});
+        // fetch all the images in the database
         fetchImages().then((res)=>{
             setImages(res);
         }).catch((err)=>{
@@ -51,6 +59,7 @@ function Map(){
      return (
         mapCentre.lat ?
             <GoogleMap zoom={14} center={mapCentre} mapContainerStyle={containerStyle} options={defaultMapOptions}>
+                {/*MarkerF displays a marker indicating the users location*/}
                 <MarkerF position={mapCentre}/>
                 {images && images.length > 0 ?
                     images.map((value, index) => {

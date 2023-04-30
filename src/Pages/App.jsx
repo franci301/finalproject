@@ -17,7 +17,7 @@ import ViewIndividualImage from "../Components/ViewIndividualImage";
 import UploadImage from "./imageUploadSequence/UploadImage";
 import ShowMapPage from './imageUploadSequence/showMapPage';
 import AppInformationPage from "./appInformationPage";
-import ViewAllOnMap from "./ViewSearchMap";
+import ViewSearchMap from "./ViewSearchMap";
 import PaletteInformation from "./PaletteInformation";
 import SearchPage from "./SearchPage";
 import SearchInformationPage from "./SearchInformationPage";
@@ -45,7 +45,7 @@ function App() {
           <Route path='/editProfile' element={<EditProfile/>}/>
           <Route path='/popularPage' element={<PopularPage/>}/>
           <Route path='/viewIndividualImage' element={<ViewIndividualImage/>}/>
-          <Route path='/ViewOnMap' element={<ViewAllOnMap/>}/>
+          <Route path='/ViewOnMap' element={<ViewSearchMap/>}/>
           <Route path='/uploadImage' element={<UploadImage/>}/>
           <Route path='/verifyMap' element={<ShowMapPage/>}/>
           <Route path='/appInformation' element={<AppInformationPage/>}/>

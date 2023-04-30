@@ -29,11 +29,11 @@ export default function SearchPage(){
         setInfo([]);
         setErr('');
 
-        // Reformat the user input to be lowercacse and replace any spaces between words with '-' to match database naming convention
+        // Reformat the user input to be lowercase and replace any spaces between words with '-' to match database naming convention
         value = value.toLowerCase();
         value = value.replace(/\s(?=\S)/g, "-");
 
-        // verify if the user search is a lazy search
+        // checks if the user search is a lazy search
         const validLazy = checkValidLazySearch(value);
 
         if(validLazy){

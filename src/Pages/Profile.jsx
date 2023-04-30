@@ -6,6 +6,10 @@ import {useEffect, useState} from 'react';
 import getUserDetails from '../GetAndSet/get/getUserDetails';
 import getUserImages from "../GetAndSet/get/getUserImages";
 import fetchAllImages from '../GetAndSet/get/fetchAllImages';
+
+/**
+ * Page showing the user profile
+ */
 function Profile() {
 
     const navigate = useNavigate();

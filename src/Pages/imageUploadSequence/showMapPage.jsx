@@ -6,6 +6,9 @@ import UploadFileNameToDatabase from "../../GetAndSet/set/uploadFileNameToDataba
 import UploadImageToDatabase from "../../GetAndSet/set/uploadImageToDatabase";
 import UploadInformationToDatabase from "../../GetAndSet/set/uploadInformationToDatabase";
 
+/**
+ *  Function to verify the image location
+ */
 export default function ShowMapPage() {
 
     const location = useLocation();

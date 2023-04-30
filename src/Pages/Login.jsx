@@ -8,6 +8,9 @@ import NavMain from '../Layouts/NavMain';
 import AddUserToDatabase from "../GetAndSet/set/addUserToDatabase";
 
 
+/**
+ * Page to log the user in
+ */
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

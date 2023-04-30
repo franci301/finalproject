@@ -7,6 +7,9 @@ import {useNavigate} from "react-router-dom";
 import {Slider} from "@mui/material";
 import '../Assets/Styles/seraches.css';
 
+/**
+ *  Function to handle the advanced search / the compare images search
+ */
 export default function AdvancedSearchNorm(){
 
     const [rgbNorm, setRgbNorm] = useState(null);

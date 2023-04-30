@@ -4,7 +4,7 @@ import '../Assets/Styles/topComponent.css';
 
 /**
  * Function to display the search results
- * @param {props} information - list of data
+ * @param {list} information - list of data
  */
 export default function SearchResultsPage({information}){
 

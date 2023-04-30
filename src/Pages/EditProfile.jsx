@@ -5,6 +5,9 @@ import { auth, db } from '../firebase/_firebase-config';
 import { doc, getDoc,updateDoc } from 'firebase/firestore';
 import { sendPasswordResetEmail } from 'firebase/auth';
 
+/**
+ *  Function to handle editing the user's profile
+ */
 export default function EditProfile() {
 
     const [name, setName] = useState('');

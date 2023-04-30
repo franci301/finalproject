@@ -2,12 +2,15 @@ import NavMain from "../Layouts/NavMain";
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 
+/**
+ *  Function to handle the advanced search results
+ */
 export default function AdvancedResults() {
   const location = useLocation()
   const [result, setBase] = useState(null);
-  const [group1, setGrp1] = useState(null);
-  const [group2, setGrp2] = useState(null);
-  const [group3, setGrp3] = useState(null);
+  const [group1, setGrp1] = useState(null); // same image with colours at the same locations as the ones in the grid
+  const [group2, setGrp2] = useState(null); // a similar colour but at different grid locations
+  const [group3, setGrp3] = useState(null); // colours are in both images but not at the same locations
 
   useEffect(() => {
     const data = location.state;
