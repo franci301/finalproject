@@ -18,7 +18,7 @@ export default function PercentageSearch() {
   const [colorInput, setColorInput] = useState('');
   const [percentageInput, setPercentageInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [setTotalPercentage, totalPercentage] = useState(0);
+  const [totalPercentage, setTotalPercentage] = useState(0);
 
   useEffect(()=>{
         // calculating the total percentage
@@ -34,6 +34,8 @@ export default function PercentageSearch() {
           result: result,
           }
       });
+    }else{
+      setErrorMessage('No images match your search requirement');
     }
   }
 
@@ -42,7 +44,7 @@ export default function PercentageSearch() {
     setValue(newValue);
   };
 
-  // adding new values to the list and calcuclating the total percentage
+  // adding new values to the list and calculating the total percentage
   const handleAddValues = () => {
     if (colorInput && percentageInput) {
       const newPercentage = parseFloat(percentageInput);
@@ -102,7 +104,7 @@ export default function PercentageSearch() {
         </div>
       <br/>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <p>Total percentage: {totalPercentage.toFixed(2)}%</p>
+      <p>Total percentage: {totalPercentage}%</p>
             <ul>
         {Object.entries(values).map(([color, percentage]) => (
           <li key={color} style={{ display: 'flex', alignItems: 'center' }}>
